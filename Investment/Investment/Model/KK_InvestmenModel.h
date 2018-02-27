@@ -7,33 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "KK_IDInfo.h"
+#import "KK_BankCardInfo.h"
 
 @interface KK_InvestmenModel : NSObject
 
 /**
- 头像
+ 投资人信息
  */
-@property (nonatomic, strong) NSString *icon;
+@property (nonatomic, strong) KK_IDInfo *id_info;
 
 /**
- 姓名
+ 银行卡信息
  */
-@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) KK_BankCardInfo *bank_card_info;
 
 /**
  手机号
  */
 @property (nonatomic, strong) NSString *phone;
-
-/**
- 家庭地址
- */
-@property (nonatomic, strong) NSString *address;
-
-/**
- 银行卡号
- */
-@property (nonatomic, strong) NSString *account;
 
 /**
  费率
