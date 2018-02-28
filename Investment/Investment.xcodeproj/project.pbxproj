@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B00F87F2046E9A1000F028F /* KK_InvestmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00F87E2046E9A1000F028F /* KK_InvestmentManager.m */; };
 		4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE5B2045901800992673 /* AppDelegate.m */; };
 		4BD6AE622045901800992673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE602045901800992673 /* Main.storyboard */; };
 		4BD6AE642045901800992673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE632045901800992673 /* Assets.xcassets */; };
@@ -44,6 +45,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B00F87C2046E83C000F028F /* Investment-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Investment-PrefixHeader.pch"; sourceTree = "<group>"; };
+		4B00F87D2046E9A0000F028F /* KK_InvestmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KK_InvestmentManager.h; sourceTree = "<group>"; };
+		4B00F87E2046E9A1000F028F /* KK_InvestmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KK_InvestmentManager.m; sourceTree = "<group>"; };
 		4BD6AE572045901800992673 /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD6AE5A2045901800992673 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BD6AE5B2045901800992673 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				4BD6AE8D2045980300992673 /* Lend */,
 				4BD6AE5A2045901800992673 /* AppDelegate.h */,
 				4BD6AE5B2045901800992673 /* AppDelegate.m */,
+				4B00F87D2046E9A0000F028F /* KK_InvestmentManager.h */,
+				4B00F87E2046E9A1000F028F /* KK_InvestmentManager.m */,
 				4BD6AE9B2045A1EC00992673 /* KK_InvestmentSetting.h */,
 				4BD6AE9C2045A1EC00992673 /* KK_InvestmentSetting.m */,
 				4BD6AE602045901800992673 /* Main.storyboard */,
@@ -146,6 +152,7 @@
 				4BD6AE652045901800992673 /* LaunchScreen.storyboard */,
 				4BD6AE682045901800992673 /* Info.plist */,
 				4BD6AE692045901800992673 /* main.m */,
+				4B00F87C2046E83C000F028F /* Investment-PrefixHeader.pch */,
 			);
 			path = Investment;
 			sourceTree = "<group>";
@@ -436,6 +443,7 @@
 			files = (
 				4BD6AE90204598B600992673 /* KK_BorrowMoneyViewController.m in Sources */,
 				4BD6AE9A20459E8500992673 /* KK_HistoryViewController.m in Sources */,
+				4B00F87F2046E9A1000F028F /* KK_InvestmentManager.m in Sources */,
 				4BD6AE6A2045901800992673 /* main.m in Sources */,
 				4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */,
 				4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */,
@@ -610,6 +618,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7JA7LDSNRW;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Investment/Investment-PrefixHeader.pch";
 				INFOPLIST_FILE = Investment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -626,6 +636,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7JA7LDSNRW;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Investment/Investment-PrefixHeader.pch";
 				INFOPLIST_FILE = Investment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
