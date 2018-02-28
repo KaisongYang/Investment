@@ -1,0 +1,9 @@
+platform :ios, '8.0'
+
+target 'Investment' do
+	pod 'Masonry'
+	pod 'JSONModel'
+	pod 'LBXScan', '~> 2.3'
+
+end
+	
