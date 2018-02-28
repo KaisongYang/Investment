@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, InvestmentType) {
+    InvestmentTypeBorrow = 1,        // 借入
+    InvestmentTypeLend,              // 借出
+    InvestmentTypeHistory,           // 历史
+};
+typedef NS_ENUM(NSUInteger, InvestmentState) {
+    InvestmentStateNormal = 1,      // 正常
+    InvestmentStateSuspend,         // 暂停
+    InvestmentStateTerminate,       // 终止
+};
+
 @interface KK_InvestmentSetting : NSObject
 
 @end

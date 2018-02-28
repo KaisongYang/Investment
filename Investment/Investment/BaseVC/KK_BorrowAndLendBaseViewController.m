@@ -8,6 +8,8 @@
 
 #import "KK_BorrowAndLendBaseViewController.h"
 #import "KK_BorrowAndLendTableViewCell.h"
+#import "KK_InvestmenModel.h"
+#import "KK_InvestmentManager.h"
 
 @interface KK_BorrowAndLendBaseViewController ()
 
@@ -32,6 +34,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     KK_BorrowAndLendTableViewCell *cell = [KK_BorrowAndLendTableViewCell cellWithTableView:tableView];
+    if (__KKInvestmentManager.curent_investmnet_data.count >= indexPath.row + 1) {
+        [cell updateInfo:[__KKInvestmentManager.curent_investmnet_data objectAtIndex:indexPath.row]];
+    }
     return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

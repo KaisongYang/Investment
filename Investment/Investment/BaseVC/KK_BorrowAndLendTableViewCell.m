@@ -76,7 +76,7 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
     }
 }
 
-- (void)updateInfo:(NSDictionary *)info {
+- (void)updateInfo:(KK_InvestmenModel *)model {
     
 }
 

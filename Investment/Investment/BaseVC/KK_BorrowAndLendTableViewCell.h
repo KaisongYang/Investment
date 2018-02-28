@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "KK_InvestmentSetting.h"
+#import "KK_InvestmenModel.h"
 
 @interface KK_BorrowAndLendTableViewCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
-- (void)updateInfo:(NSDictionary *)info;
+- (void)updateInfo:(KK_InvestmenModel *)model;
 
 @end

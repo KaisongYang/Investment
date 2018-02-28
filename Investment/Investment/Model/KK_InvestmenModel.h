@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "KK_IDInfo.h"
 #import "KK_BankCardInfo.h"
+#import "KK_InvestmentSetting.h"
 
 @interface KK_InvestmenModel : NSObject
 
@@ -36,8 +37,9 @@
  投资类型
  1、借入
  2、借出
+ 3、历史
  */
-@property (nonatomic, assign) NSInteger investment_type;
+@property (nonatomic, assign) InvestmentType investment_type;
 
 /**
  投资状态
@@ -45,6 +47,15 @@
  2、暂停
  3、终止
  */
-@property (nonatomic, assign) NSInteger investment_state;
+@property (nonatomic, assign) InvestmentState investment_state;
+
+/**
+ 投资关系（可以自定义）
+ 1、亲戚
+ 2、同学
+ 3、朋友
+ 4、其他
+ */
+@property (nonatomic, assign) NSInteger investment_relationship;
 
 @end

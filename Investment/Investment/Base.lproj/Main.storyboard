@@ -37,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qi8-7j-Q2j"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Borrow" id="jtq-pu-Dbw"/>
+                    <navigationItem key="navigationItem" title="Title" id="C1K-2h-TNU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imC-fJ-Fyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-835" y="-292"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Base Tab Bar View Controller-->
         <scene sceneID="UTk-xX-Luj">
             <objects>
-                <tabBarController hidesBottomBarWhenPushed="YES" id="8Rl-e4-5AR" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="8Rl-e4-5AR" customClass="KK_BaseTabBarViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SZc-Dl-9Al">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

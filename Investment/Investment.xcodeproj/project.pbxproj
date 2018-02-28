@@ -8,13 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE5B2045901800992673 /* AppDelegate.m */; };
-		4BD6AE5F2045901800992673 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE5E2045901800992673 /* ViewController.m */; };
 		4BD6AE622045901800992673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE602045901800992673 /* Main.storyboard */; };
 		4BD6AE642045901800992673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE632045901800992673 /* Assets.xcassets */; };
 		4BD6AE672045901800992673 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE652045901800992673 /* LaunchScreen.storyboard */; };
 		4BD6AE6A2045901800992673 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE692045901800992673 /* main.m */; };
 		4BD6AE742045901800992673 /* InvestmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE732045901800992673 /* InvestmentTests.m */; };
 		4BD6AE7F2045901900992673 /* InvestmentUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE7E2045901900992673 /* InvestmentUITests.m */; };
+		4BD6AE90204598B600992673 /* KK_BorrowMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE8F204598B600992673 /* KK_BorrowMoneyViewController.m */; };
+		4BD6AE93204598C800992673 /* KK_LendMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE92204598C800992673 /* KK_LendMoneyViewController.m */; };
+		4BD6AE9620459AB000992673 /* KK_BorrowAndLendBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE9520459AB000992673 /* KK_BorrowAndLendBaseViewController.m */; };
+		4BD6AE9A20459E8500992673 /* KK_HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE9920459E8500992673 /* KK_HistoryViewController.m */; };
+		4BD6AE9D2045A1EC00992673 /* KK_InvestmentSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE9C2045A1EC00992673 /* KK_InvestmentSetting.m */; };
+		4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEA02045A43100992673 /* KK_BorrowAndLendTableViewCell.m */; };
+		4BD6AEA42045A9EC00992673 /* KK_InvestmenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEA32045A9EC00992673 /* KK_InvestmenModel.m */; };
+		4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEAA2045ACE400992673 /* KK_BankCardInfo.m */; };
+		4BD6AEAE2045AD2A00992673 /* KK_IDInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEAD2045AD2A00992673 /* KK_IDInfo.m */; };
+		E091F29B7111978CC4FFA3C8 /* libPods-Investment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A3D473A2B8D815527339F6 /* libPods-Investment.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,8 +47,6 @@
 		4BD6AE572045901800992673 /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD6AE5A2045901800992673 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BD6AE5B2045901800992673 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4BD6AE5D2045901800992673 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4BD6AE5E2045901800992673 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4BD6AE612045901800992673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4BD6AE632045901800992673 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4BD6AE662045901800992673 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +58,27 @@
 		4BD6AE7A2045901900992673 /* InvestmentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InvestmentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD6AE7E2045901900992673 /* InvestmentUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InvestmentUITests.m; sourceTree = "<group>"; };
 		4BD6AE802045901900992673 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BD6AE8E204598B600992673 /* KK_BorrowMoneyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_BorrowMoneyViewController.h; sourceTree = "<group>"; };
+		4BD6AE8F204598B600992673 /* KK_BorrowMoneyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_BorrowMoneyViewController.m; sourceTree = "<group>"; };
+		4BD6AE91204598C800992673 /* KK_LendMoneyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_LendMoneyViewController.h; sourceTree = "<group>"; };
+		4BD6AE92204598C800992673 /* KK_LendMoneyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_LendMoneyViewController.m; sourceTree = "<group>"; };
+		4BD6AE9420459AB000992673 /* KK_BorrowAndLendBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_BorrowAndLendBaseViewController.h; sourceTree = "<group>"; };
+		4BD6AE9520459AB000992673 /* KK_BorrowAndLendBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_BorrowAndLendBaseViewController.m; sourceTree = "<group>"; };
+		4BD6AE9820459E8500992673 /* KK_HistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_HistoryViewController.h; sourceTree = "<group>"; };
+		4BD6AE9920459E8500992673 /* KK_HistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_HistoryViewController.m; sourceTree = "<group>"; };
+		4BD6AE9B2045A1EC00992673 /* KK_InvestmentSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_InvestmentSetting.h; sourceTree = "<group>"; };
+		4BD6AE9C2045A1EC00992673 /* KK_InvestmentSetting.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_InvestmentSetting.m; sourceTree = "<group>"; };
+		4BD6AE9F2045A43100992673 /* KK_BorrowAndLendTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_BorrowAndLendTableViewCell.h; sourceTree = "<group>"; };
+		4BD6AEA02045A43100992673 /* KK_BorrowAndLendTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_BorrowAndLendTableViewCell.m; sourceTree = "<group>"; };
+		4BD6AEA22045A9EC00992673 /* KK_InvestmenModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_InvestmenModel.h; sourceTree = "<group>"; };
+		4BD6AEA32045A9EC00992673 /* KK_InvestmenModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_InvestmenModel.m; sourceTree = "<group>"; };
+		4BD6AEA92045ACE400992673 /* KK_BankCardInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_BankCardInfo.h; sourceTree = "<group>"; };
+		4BD6AEAA2045ACE400992673 /* KK_BankCardInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_BankCardInfo.m; sourceTree = "<group>"; };
+		4BD6AEAC2045AD2A00992673 /* KK_IDInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_IDInfo.h; sourceTree = "<group>"; };
+		4BD6AEAD2045AD2A00992673 /* KK_IDInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_IDInfo.m; sourceTree = "<group>"; };
+		8A19E1E7648E793F797B244C /* Pods-Investment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Investment/Pods-Investment.debug.xcconfig"; sourceTree = "<group>"; };
+		9F098FC72B55123E24E5FF5D /* Pods-Investment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Investment/Pods-Investment.release.xcconfig"; sourceTree = "<group>"; };
+		A1A3D473A2B8D815527339F6 /* libPods-Investment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Investment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E091F29B7111978CC4FFA3C8 /* libPods-Investment.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +114,8 @@
 				4BD6AE722045901800992673 /* InvestmentTests */,
 				4BD6AE7D2045901900992673 /* InvestmentUITests */,
 				4BD6AE582045901800992673 /* Products */,
+				C98AB7537F901ED8E1FA452C /* Pods */,
+				922CA86D2D2C97091AD35508 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +132,15 @@
 		4BD6AE592045901800992673 /* Investment */ = {
 			isa = PBXGroup;
 			children = (
+				4BD6AEA52045ACA100992673 /* Model */,
+				4BD6AE9E2045A3FD00992673 /* BaseVC */,
+				4BD6AE9720459E4F00992673 /* History */,
+				4BD6AE8C204597B700992673 /* Borrow */,
+				4BD6AE8D2045980300992673 /* Lend */,
 				4BD6AE5A2045901800992673 /* AppDelegate.h */,
 				4BD6AE5B2045901800992673 /* AppDelegate.m */,
-				4BD6AE5D2045901800992673 /* ViewController.h */,
-				4BD6AE5E2045901800992673 /* ViewController.m */,
+				4BD6AE9B2045A1EC00992673 /* KK_InvestmentSetting.h */,
+				4BD6AE9C2045A1EC00992673 /* KK_InvestmentSetting.m */,
 				4BD6AE602045901800992673 /* Main.storyboard */,
 				4BD6AE632045901800992673 /* Assets.xcassets */,
 				4BD6AE652045901800992673 /* LaunchScreen.storyboard */,
@@ -132,6 +168,74 @@
 			path = InvestmentUITests;
 			sourceTree = "<group>";
 		};
+		4BD6AE8C204597B700992673 /* Borrow */ = {
+			isa = PBXGroup;
+			children = (
+				4BD6AE8E204598B600992673 /* KK_BorrowMoneyViewController.h */,
+				4BD6AE8F204598B600992673 /* KK_BorrowMoneyViewController.m */,
+			);
+			path = Borrow;
+			sourceTree = "<group>";
+		};
+		4BD6AE8D2045980300992673 /* Lend */ = {
+			isa = PBXGroup;
+			children = (
+				4BD6AE91204598C800992673 /* KK_LendMoneyViewController.h */,
+				4BD6AE92204598C800992673 /* KK_LendMoneyViewController.m */,
+			);
+			path = Lend;
+			sourceTree = "<group>";
+		};
+		4BD6AE9720459E4F00992673 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				4BD6AE9820459E8500992673 /* KK_HistoryViewController.h */,
+				4BD6AE9920459E8500992673 /* KK_HistoryViewController.m */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		4BD6AE9E2045A3FD00992673 /* BaseVC */ = {
+			isa = PBXGroup;
+			children = (
+				4BD6AE9420459AB000992673 /* KK_BorrowAndLendBaseViewController.h */,
+				4BD6AE9520459AB000992673 /* KK_BorrowAndLendBaseViewController.m */,
+				4BD6AE9F2045A43100992673 /* KK_BorrowAndLendTableViewCell.h */,
+				4BD6AEA02045A43100992673 /* KK_BorrowAndLendTableViewCell.m */,
+			);
+			path = BaseVC;
+			sourceTree = "<group>";
+		};
+		4BD6AEA52045ACA100992673 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4BD6AEAC2045AD2A00992673 /* KK_IDInfo.h */,
+				4BD6AEAD2045AD2A00992673 /* KK_IDInfo.m */,
+				4BD6AEA92045ACE400992673 /* KK_BankCardInfo.h */,
+				4BD6AEAA2045ACE400992673 /* KK_BankCardInfo.m */,
+				4BD6AEA22045A9EC00992673 /* KK_InvestmenModel.h */,
+				4BD6AEA32045A9EC00992673 /* KK_InvestmenModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		922CA86D2D2C97091AD35508 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1A3D473A2B8D815527339F6 /* libPods-Investment.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C98AB7537F901ED8E1FA452C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8A19E1E7648E793F797B244C /* Pods-Investment.debug.xcconfig */,
+				9F098FC72B55123E24E5FF5D /* Pods-Investment.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,9 +243,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4BD6AE832045901900992673 /* Build configuration list for PBXNativeTarget "Investment" */;
 			buildPhases = (
+				181EAB18A8CAC8089B5F7847 /* [CP] Check Pods Manifest.lock */,
 				4BD6AE532045901800992673 /* Sources */,
 				4BD6AE542045901800992673 /* Frameworks */,
 				4BD6AE552045901800992673 /* Resources */,
+				50A6D65EF6030A94AB8D4BA2 /* [CP] Embed Pods Frameworks */,
+				C3E72892EBC5216A20780AE7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -260,14 +367,84 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		181EAB18A8CAC8089B5F7847 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Investment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50A6D65EF6030A94AB8D4BA2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Investment/Pods-Investment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3E72892EBC5216A20780AE7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Investment/Pods-Investment-resources.sh",
+				"${PODS_ROOT}/LBXScan/LBXScan/UI/CodeScan.bundle",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-back.png",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-help.html",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-helpicons.png",
+				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-samples.png",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CodeScan.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-back.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-help.html",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-helpicons.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-samples.png",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Investment/Pods-Investment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4BD6AE532045901800992673 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4BD6AE5F2045901800992673 /* ViewController.m in Sources */,
+				4BD6AE90204598B600992673 /* KK_BorrowMoneyViewController.m in Sources */,
+				4BD6AE9A20459E8500992673 /* KK_HistoryViewController.m in Sources */,
 				4BD6AE6A2045901800992673 /* main.m in Sources */,
+				4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */,
+				4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */,
+				4BD6AE9D2045A1EC00992673 /* KK_InvestmentSetting.m in Sources */,
+				4BD6AEA42045A9EC00992673 /* KK_InvestmenModel.m in Sources */,
 				4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */,
+				4BD6AEAE2045AD2A00992673 /* KK_IDInfo.m in Sources */,
+				4BD6AE93204598C800992673 /* KK_LendMoneyViewController.m in Sources */,
+				4BD6AE9620459AB000992673 /* KK_BorrowAndLendBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,7 +547,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -419,7 +596,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -428,11 +605,13 @@
 		};
 		4BD6AE842045901900992673 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A19E1E7648E793F797B244C /* Pods-Investment.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7JA7LDSNRW;
 				INFOPLIST_FILE = Investment/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangkaisong.investment.Investment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,11 +621,13 @@
 		};
 		4BD6AE852045901900992673 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F098FC72B55123E24E5FF5D /* Pods-Investment.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7JA7LDSNRW;
 				INFOPLIST_FILE = Investment/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yangkaisong.investment.Investment;
 				PRODUCT_NAME = "$(TARGET_NAME)";
