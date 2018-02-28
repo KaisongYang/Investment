@@ -10,6 +10,8 @@
 #import "KK_BorrowAndLendTableViewCell.h"
 #import "KK_InvestmenModel.h"
 #import "KK_InvestmentManager.h"
+#import "KK_PersonInformationViewController.h"
+#import "KK_PersonDetailViewController.h"
 
 @interface KK_BorrowAndLendBaseViewController ()
 
@@ -21,6 +23,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.tableView reloadData];
+    [self setNavBar];
+}
+
+- (void)setNavBar {
+    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    addBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [addBtn setTitle:@"添加" forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [addBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addBtn];
+}
+
+- (void)btnClick:(UIButton *)sender {
+    
+    KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
+    [self presentViewController:vc animated:YES completion:^{
+        
+    }];
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -68,10 +89,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self toDetail];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 160;
+}
+
+- (void)toDetail {
+    KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)telPhone:(NSString *)phone {
