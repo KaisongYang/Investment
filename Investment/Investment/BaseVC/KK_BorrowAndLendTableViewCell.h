@@ -13,6 +13,7 @@
 @interface KK_BorrowAndLendTableViewCell : UITableViewCell
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
+@property (nonatomic, copy) ActionClick actionClick;
 - (void)updateInfo:(KK_InvestmenModel *)model;
 
 @end

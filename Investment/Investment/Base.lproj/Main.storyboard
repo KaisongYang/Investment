@@ -37,7 +37,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="qi8-7j-Q2j"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="C1K-2h-TNU"/>
+                    <navigationItem key="navigationItem" title="Borrow" id="C1K-2h-TNU"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="imC-fJ-Fyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

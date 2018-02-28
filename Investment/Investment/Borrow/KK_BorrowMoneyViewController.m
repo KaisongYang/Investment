@@ -16,8 +16,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self setNavBar];
 }
 
+- (void)setNavBar {
+    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    addBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [addBtn setTitle:@"添加" forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [addBtn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addBtn];
+}
+
+- (void)btnClick:(UIButton *)sender {
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

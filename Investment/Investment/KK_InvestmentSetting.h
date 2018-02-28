@@ -13,11 +13,14 @@ typedef NS_ENUM(NSUInteger, InvestmentType) {
     InvestmentTypeLend,              // 借出
     InvestmentTypeHistory,           // 历史
 };
+
 typedef NS_ENUM(NSUInteger, InvestmentState) {
     InvestmentStateNormal = 1,      // 正常
     InvestmentStateSuspend,         // 暂停
     InvestmentStateTerminate,       // 终止
 };
+
+typedef void(^ActionClick)(NSInteger index);
 
 @interface KK_InvestmentSetting : NSObject
 

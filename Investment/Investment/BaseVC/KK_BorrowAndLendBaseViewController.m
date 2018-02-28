@@ -34,13 +34,61 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     KK_BorrowAndLendTableViewCell *cell = [KK_BorrowAndLendTableViewCell cellWithTableView:tableView];
+    KK_InvestmenModel *model;
     if (__KKInvestmentManager.curent_investmnet_data.count >= indexPath.row + 1) {
-        [cell updateInfo:[__KKInvestmentManager.curent_investmnet_data objectAtIndex:indexPath.row]];
+        model = [__KKInvestmentManager.curent_investmnet_data objectAtIndex:indexPath.row];
+        [cell updateInfo:model];
     }
+    __weak typeof(self) weakSelf = self;
+    cell.actionClick = ^(NSInteger index) {
+        switch (index) {
+            case 0:
+            {
+                if (model && model.phone.length) {
+                    [weakSelf telPhone:model.phone];
+                }
+            }
+                break;
+            case 1:
+            {
+                
+            }
+                break;
+            case 2:
+            {
+                
+            }
+                break;
+            default:
+                break;
+        }
+    };
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;
+    return 160;
+}
+
+- (void)telPhone:(NSString *)phone {
+    
+    if (phone.length < 1) {
+        NSLog(@"--%s-- 电话号码为空", __FUNCTION__);
+        return;
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phone]];
+    
+    if (![[UIApplication sharedApplication] canOpenURL:url]) {
+        NSLog(@"--%s-- 不能打电话", __FUNCTION__);
+        return;
+    }
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        [[UIApplication sharedApplication] openURL:url];
+    });
 }
 
 #pragma mark - setting & getting
@@ -51,7 +99,6 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tableView.estimatedRowHeight = 100;
     }
     return _tableView;
 }

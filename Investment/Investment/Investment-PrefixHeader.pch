@@ -18,6 +18,6 @@
 #import <Masonry.h>
 #import <JSONModel.h>
 #import <ZBarSDK.h>
-#import <lbx>
+
 
 #endif /* Investment_PrefixHeader_pch */
