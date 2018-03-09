@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "KK_IDInfo.h"
 #import "KK_BankCardInfo.h"
-#import "KK_InvestmentSetting.h"
 
+@class KK_InvestmentSetting;
 @interface KK_InvestmenModel : NSObject
 
 /**
@@ -57,5 +57,9 @@
  4、其他
  */
 @property (nonatomic, assign) NSInteger investment_relationship;
+
+@property (nonatomic, strong) NSString *startData;
+@property (nonatomic, strong) NSString *endData;
+@property (nonatomic, strong) NSString *createData;
 
 @end

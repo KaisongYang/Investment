@@ -7,7 +7,7 @@
 //
 
 #import "KK_PersonInformationViewController.h"
-#import "KK_BorrowAndLendTableViewCell.h"
+#import "KK_PersonInfoCell.h"
 
 @interface KK_PersonInformationViewController ()
 
@@ -18,9 +18,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView reloadData];
     [self addCloseBtn];
+    [self addOKbtn];
 }
+
+- (void)addOKbtn {
+    UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.view addSubview:addBtn];
+    addBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [addBtn setTitle:@"OK" forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [addBtn addTarget:self action:@selector(ok:) forControlEvents:UIControlEventTouchUpInside];
+    [addBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(20);
+        make.right.mas_equalTo(-20);
+        make.size.mas_equalTo(CGSizeMake(45, 45));
+    }];
+}
+
 
 - (void)addCloseBtn {
     
@@ -41,19 +59,28 @@
     }];
 }
 
+- (void)ok:(UIButton *)sender {
+    
+    __weak typeof(self) weakSelf = self;
+    [self dismissViewControllerAnimated:YES completion:^{
+        if (weakSelf.pasteConfiguration) {
+            weakSelf.actionPassPersonInfo(weakSelf.model);
+        }
+    }];
+}
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KK_BorrowAndLendTableViewCell *cell = [KK_BorrowAndLendTableViewCell cellWithTableView:tableView];
-    
+    KK_PersonInfoCell *cell = [KK_PersonInfoCell cellWithTableView:tableView];
+    cell.model = self.model;
     return cell;
 }
 
@@ -62,21 +89,30 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 160;
+    return 300;
 }
 
 #pragma mark - setting & getting
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+        _tableView = [UITableView new];
         [self.view addSubview:_tableView];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.bottom.mas_equalTo(0);
+            make.top.mas_equalTo(64);
+        }];
     }
     return _tableView;
 }
 
+- (KK_InvestmenModel *)model {
+    if (!_model) {
+        _model = [KK_InvestmenModel new];
+    }
+    return _model;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

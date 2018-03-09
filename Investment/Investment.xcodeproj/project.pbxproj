@@ -11,6 +11,7 @@
 		4B00F8822046EF4F000F028F /* KK_SegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00F8812046EF4F000F028F /* KK_SegmentView.m */; };
 		4B00F88520470413000F028F /* KK_PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00F88420470413000F028F /* KK_PersonDetailViewController.m */; };
 		4B00F88820470449000F028F /* KK_PersonInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00F88720470449000F028F /* KK_PersonInformationViewController.m */; };
+		4B3ED34C204C199A00D43DF2 /* KK_PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */; };
 		4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE5B2045901800992673 /* AppDelegate.m */; };
 		4BD6AE622045901800992673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE602045901800992673 /* Main.storyboard */; };
 		4BD6AE642045901800992673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE632045901800992673 /* Assets.xcassets */; };
@@ -57,6 +58,8 @@
 		4B00F88420470413000F028F /* KK_PersonDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonDetailViewController.m; sourceTree = "<group>"; };
 		4B00F88620470449000F028F /* KK_PersonInformationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_PersonInformationViewController.h; sourceTree = "<group>"; };
 		4B00F88720470449000F028F /* KK_PersonInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonInformationViewController.m; sourceTree = "<group>"; };
+		4B3ED34A204C199A00D43DF2 /* KK_PersonInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_PersonInfoCell.h; sourceTree = "<group>"; };
+		4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonInfoCell.m; sourceTree = "<group>"; };
 		4BD6AE572045901800992673 /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD6AE5A2045901800992673 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BD6AE5B2045901800992673 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 				4B00F88420470413000F028F /* KK_PersonDetailViewController.m */,
 				4B00F88620470449000F028F /* KK_PersonInformationViewController.h */,
 				4B00F88720470449000F028F /* KK_PersonInformationViewController.m */,
+				4B3ED34A204C199A00D43DF2 /* KK_PersonInfoCell.h */,
+				4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */,
 			);
 			path = BaseVC;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				4B00F87F2046E9A1000F028F /* KK_InvestmentManager.m in Sources */,
 				4BD6AE6A2045901800992673 /* main.m in Sources */,
 				4B00F8822046EF4F000F028F /* KK_SegmentView.m in Sources */,
+				4B3ED34C204C199A00D43DF2 /* KK_PersonInfoCell.m in Sources */,
 				4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */,
 				4B00F88520470413000F028F /* KK_PersonDetailViewController.m in Sources */,
 				4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */,
