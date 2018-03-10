@@ -7,56 +7,58 @@
 //
 
 #import <Foundation/Foundation.h>
-
 /**
  身份证信息
  */
-@interface KK_IDInfo : NSObject
+@interface KK_IDInfo : RLMObject<NSCopying>
 
 /**
  头像
  */
-@property (nonatomic, strong) NSString *id_icon;
+@property NSString *id_icon;
 
 /**
  姓名
  */
-@property (nonatomic, strong) NSString *id_name;
+@property NSString *id_name;
 
 /**
  性别
  */
-@property (nonatomic, strong) NSString *id_sex;
+@property NSString *id_sex;
 
 /**
  名族
  */
-@property (nonatomic, strong) NSString *id_nation;
+@property NSString *id_nation;
 
 /**
  出生日期
  */
-@property (nonatomic, strong) NSString *id_born_date;
+@property NSDate *id_born_date;
+@property NSString *id_born_dateStr;
 
 /**
  住址
  */
-@property (nonatomic, strong) NSString *id_address;
+@property NSString *id_address;
 
 /**
  身份证号码
  */
-@property (nonatomic, strong) NSString *id_number;
+@property NSString *id_number;
 
 /**
  签发机关
  */
-@property (nonatomic, strong) NSString *id_issue_government;
+@property NSString *id_issue_government;
 
 /**
  有效期限
  */
-@property (nonatomic, strong) NSString *id_valid;
-
+@property NSString *id_valid_from;
+@property NSString *id_valid_thru;
 
 @end
+
+RLM_ARRAY_TYPE(KK_IDInfo)

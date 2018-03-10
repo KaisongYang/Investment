@@ -7,27 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-
 /**
  银行卡信息
  */
-@interface KK_BankCardInfo : NSObject
+@interface KK_BankCardInfo : RLMObject<NSCopying>
 
 /**
  银行名称
  */
-@property (nonatomic, strong) NSString *card_name;
+@property NSString *card_name;
 
 /**
  银行卡号
  */
-@property (nonatomic, strong) NSString *card_number;
+@property NSString *card_number;
 
 /**
  银行卡有效期
  from xxx thru xxx
  */
-@property (nonatomic, strong) NSString *card_valid_from;
-@property (nonatomic, strong) NSString *card_valid_thru;
+@property NSString *card_valid_from;
+@property NSString *card_valid_thru;
 
 @end
+
+RLM_ARRAY_TYPE(KK_BankCardInfo)

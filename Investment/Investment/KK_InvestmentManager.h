@@ -18,22 +18,6 @@
 + (instancetype)shareManager;
 
 /**
- 借入数据
- */
-@property (nonatomic, strong) NSMutableArray *borrowArrM;
-
-/**
- 借出数据
- */
-@property (nonatomic, strong) NSMutableArray *lendArrM;
-
-/**
- 历史完结数据
- */
-@property (nonatomic, strong) NSMutableArray *historyArrM;
-
-
-/**
  当前选择的投资类型
  */
 @property (nonatomic, assign) InvestmentType current_investment_type;
@@ -41,7 +25,7 @@
 /**
  当前选择的投资类型数据
  */
-@property (nonatomic, strong) NSMutableArray *curent_investmnet_data;
+@property (nonatomic, strong) NSArray<KK_InvestmenModel> *curent_investmnet_data;
 
 /**
  编辑
@@ -50,4 +34,4 @@
 
 @end
 
-#define __KKInvestmentManager   [KK_InvestmentManager shareManager]
+#define __KKInvestmentManager [KK_InvestmentManager shareManager]

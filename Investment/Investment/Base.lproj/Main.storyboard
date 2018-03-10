@@ -109,10 +109,10 @@
             </objects>
             <point key="canvasLocation" x="-835" y="-292"/>
         </scene>
-        <!--Base Tab Bar View Controller-->
+        <!--Tab Bar View Controller-->
         <scene sceneID="UTk-xX-Luj">
             <objects>
-                <tabBarController hidesBottomBarWhenPushed="YES" id="8Rl-e4-5AR" customClass="KK_BaseTabBarViewController" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="8Rl-e4-5AR" customClass="KK_TabBarViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="SZc-Dl-9Al">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

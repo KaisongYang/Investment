@@ -28,9 +28,7 @@
     UIButton *addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:addBtn];
     addBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [addBtn setTitle:@"OK" forState:UIControlStateNormal];
-    [addBtn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [addBtn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [addBtn setImage:[UIImage imageNamed:@"icCheck"] forState:UIControlStateNormal];
     [addBtn addTarget:self action:@selector(ok:) forControlEvents:UIControlEventTouchUpInside];
     [addBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(20);
@@ -44,8 +42,7 @@
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:btn];
-    [btn setTitle:@"X" forState:UIControlStateNormal];
-    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"close-16"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(20);
@@ -54,8 +51,11 @@
 }
 - (void)close:(UIButton *)sender {
     
+    __weak typeof(self) weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        
+        if (weakSelf.actionPassPersonInfo) {
+            weakSelf.actionPassPersonInfo(weakSelf.model, NO);
+        }
     }];
 }
 
@@ -63,8 +63,8 @@
     
     __weak typeof(self) weakSelf = self;
     [self dismissViewControllerAnimated:YES completion:^{
-        if (weakSelf.pasteConfiguration) {
-            weakSelf.actionPassPersonInfo(weakSelf.model);
+        if (weakSelf.actionPassPersonInfo) {
+            weakSelf.actionPassPersonInfo(weakSelf.model, YES);
         }
     }];
 }

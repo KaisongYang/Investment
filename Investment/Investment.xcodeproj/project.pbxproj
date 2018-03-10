@@ -12,6 +12,12 @@
 		4B00F88520470413000F028F /* KK_PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00F88420470413000F028F /* KK_PersonDetailViewController.m */; };
 		4B00F88820470449000F028F /* KK_PersonInformationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B00F88720470449000F028F /* KK_PersonInformationViewController.m */; };
 		4B3ED34C204C199A00D43DF2 /* KK_PersonInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */; };
+		4BC8F97A2053719200C183DB /* WSDatePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4BC8F9762053719200C183DB /* WSDatePickerView.xib */; };
+		4BC8F97B2053719200C183DB /* WSDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F9772053719200C183DB /* WSDatePickerView.m */; };
+		4BC8F97C2053719200C183DB /* NSDate+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F9782053719200C183DB /* NSDate+Extension.m */; };
+		4BC8F97D2053719200C183DB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F9792053719200C183DB /* UIView+Extension.m */; };
+		4BC8F982205382C300C183DB /* KK_PersonDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F981205382C300C183DB /* KK_PersonDetailTableViewCell.m */; };
+		4BC8F98C2053CADC00C183DB /* KK_TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F98B2053CADC00C183DB /* KK_TabBarViewController.m */; };
 		4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE5B2045901800992673 /* AppDelegate.m */; };
 		4BD6AE622045901800992673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE602045901800992673 /* Main.storyboard */; };
 		4BD6AE642045901800992673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE632045901800992673 /* Assets.xcassets */; };
@@ -60,6 +66,17 @@
 		4B00F88720470449000F028F /* KK_PersonInformationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonInformationViewController.m; sourceTree = "<group>"; };
 		4B3ED34A204C199A00D43DF2 /* KK_PersonInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_PersonInfoCell.h; sourceTree = "<group>"; };
 		4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonInfoCell.m; sourceTree = "<group>"; };
+		4BC8F9732053719200C183DB /* NSDate+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Extension.h"; sourceTree = "<group>"; };
+		4BC8F9742053719200C183DB /* WSDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSDatePickerView.h; sourceTree = "<group>"; };
+		4BC8F9752053719200C183DB /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		4BC8F9762053719200C183DB /* WSDatePickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WSDatePickerView.xib; sourceTree = "<group>"; };
+		4BC8F9772053719200C183DB /* WSDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSDatePickerView.m; sourceTree = "<group>"; };
+		4BC8F9782053719200C183DB /* NSDate+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Extension.m"; sourceTree = "<group>"; };
+		4BC8F9792053719200C183DB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		4BC8F980205382C300C183DB /* KK_PersonDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_PersonDetailTableViewCell.h; sourceTree = "<group>"; };
+		4BC8F981205382C300C183DB /* KK_PersonDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonDetailTableViewCell.m; sourceTree = "<group>"; };
+		4BC8F98A2053CADC00C183DB /* KK_TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_TabBarViewController.h; sourceTree = "<group>"; };
+		4BC8F98B2053CADC00C183DB /* KK_TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_TabBarViewController.m; sourceTree = "<group>"; };
 		4BD6AE572045901800992673 /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD6AE5A2045901800992673 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BD6AE5B2045901800992673 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -123,6 +140,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4BC8F9722053719200C183DB /* WSDaePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				4BC8F9732053719200C183DB /* NSDate+Extension.h */,
+				4BC8F9782053719200C183DB /* NSDate+Extension.m */,
+				4BC8F9752053719200C183DB /* UIView+Extension.h */,
+				4BC8F9792053719200C183DB /* UIView+Extension.m */,
+				4BC8F9742053719200C183DB /* WSDatePickerView.h */,
+				4BC8F9772053719200C183DB /* WSDatePickerView.m */,
+				4BC8F9762053719200C183DB /* WSDatePickerView.xib */,
+			);
+			path = WSDaePickerView;
+			sourceTree = "<group>";
+		};
+		4BC8F97E2053829300C183DB /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				4B00F88320470413000F028F /* KK_PersonDetailViewController.h */,
+				4B00F88420470413000F028F /* KK_PersonDetailViewController.m */,
+				4BC8F980205382C300C183DB /* KK_PersonDetailTableViewCell.h */,
+				4BC8F981205382C300C183DB /* KK_PersonDetailTableViewCell.m */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		4BC8F97F2053829E00C183DB /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				4B00F88620470449000F028F /* KK_PersonInformationViewController.h */,
+				4B00F88720470449000F028F /* KK_PersonInformationViewController.m */,
+				4B3ED34A204C199A00D43DF2 /* KK_PersonInfoCell.h */,
+				4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		4BC8F98320538A5F00C183DB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		4BD6AE4E2045901800992673 = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +208,8 @@
 		4BD6AE592045901800992673 /* Investment */ = {
 			isa = PBXGroup;
 			children = (
+				4BC8F98320538A5F00C183DB /* Category */,
+				4BC8F9722053719200C183DB /* WSDaePickerView */,
 				4BD6AEA52045ACA100992673 /* Model */,
 				4BD6AE9E2045A3FD00992673 /* BaseVC */,
 				4BD6AE9720459E4F00992673 /* History */,
@@ -217,18 +279,16 @@
 		4BD6AE9E2045A3FD00992673 /* BaseVC */ = {
 			isa = PBXGroup;
 			children = (
+				4BC8F97F2053829E00C183DB /* Info */,
+				4BC8F97E2053829300C183DB /* Detail */,
 				4BD6AE9420459AB000992673 /* KK_BorrowAndLendBaseViewController.h */,
 				4BD6AE9520459AB000992673 /* KK_BorrowAndLendBaseViewController.m */,
 				4BD6AE9F2045A43100992673 /* KK_BorrowAndLendTableViewCell.h */,
 				4BD6AEA02045A43100992673 /* KK_BorrowAndLendTableViewCell.m */,
 				4B00F8802046EF4F000F028F /* KK_SegmentView.h */,
 				4B00F8812046EF4F000F028F /* KK_SegmentView.m */,
-				4B00F88320470413000F028F /* KK_PersonDetailViewController.h */,
-				4B00F88420470413000F028F /* KK_PersonDetailViewController.m */,
-				4B00F88620470449000F028F /* KK_PersonInformationViewController.h */,
-				4B00F88720470449000F028F /* KK_PersonInformationViewController.m */,
-				4B3ED34A204C199A00D43DF2 /* KK_PersonInfoCell.h */,
-				4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */,
+				4BC8F98A2053CADC00C183DB /* KK_TabBarViewController.h */,
+				4BC8F98B2053CADC00C183DB /* KK_TabBarViewController.m */,
 			);
 			path = BaseVC;
 			sourceTree = "<group>";
@@ -374,6 +434,7 @@
 			files = (
 				4BD6AE672045901800992673 /* LaunchScreen.storyboard in Resources */,
 				4BD6AE642045901800992673 /* Assets.xcassets in Resources */,
+				4BC8F97A2053719200C183DB /* WSDatePickerView.xib in Resources */,
 				4BD6AE622045901800992673 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,18 +525,23 @@
 				4BD6AE90204598B600992673 /* KK_BorrowMoneyViewController.m in Sources */,
 				4BD6AE9A20459E8500992673 /* KK_HistoryViewController.m in Sources */,
 				4B00F88820470449000F028F /* KK_PersonInformationViewController.m in Sources */,
+				4BC8F982205382C300C183DB /* KK_PersonDetailTableViewCell.m in Sources */,
 				4B00F87F2046E9A1000F028F /* KK_InvestmentManager.m in Sources */,
 				4BD6AE6A2045901800992673 /* main.m in Sources */,
 				4B00F8822046EF4F000F028F /* KK_SegmentView.m in Sources */,
+				4BC8F97D2053719200C183DB /* UIView+Extension.m in Sources */,
 				4B3ED34C204C199A00D43DF2 /* KK_PersonInfoCell.m in Sources */,
 				4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */,
+				4BC8F97C2053719200C183DB /* NSDate+Extension.m in Sources */,
 				4B00F88520470413000F028F /* KK_PersonDetailViewController.m in Sources */,
 				4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */,
 				4BD6AE9D2045A1EC00992673 /* KK_InvestmentSetting.m in Sources */,
+				4BC8F98C2053CADC00C183DB /* KK_TabBarViewController.m in Sources */,
 				4BD6AEA42045A9EC00992673 /* KK_InvestmenModel.m in Sources */,
 				4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */,
 				4BD6AEAE2045AD2A00992673 /* KK_IDInfo.m in Sources */,
 				4BD6AE93204598C800992673 /* KK_LendMoneyViewController.m in Sources */,
+				4BC8F97B2053719200C183DB /* WSDatePickerView.m in Sources */,
 				4BD6AE9620459AB000992673 /* KK_BorrowAndLendBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -37,11 +37,7 @@
 }
 
 - (void)btnClick:(UIButton *)sender {
-    
-    KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
-    [self presentViewController:vc animated:YES completion:^{
-        
-    }];
+    [self toInfo:nil];
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -49,17 +45,14 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 100;
+    return __KKInvestmentManager.curent_investmnet_data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     KK_BorrowAndLendTableViewCell *cell = [KK_BorrowAndLendTableViewCell cellWithTableView:tableView];
-    KK_InvestmenModel *model;
-    if (__KKInvestmentManager.curent_investmnet_data.count >= indexPath.row + 1) {
-        model = [__KKInvestmentManager.curent_investmnet_data objectAtIndex:indexPath.row];
-        [cell updateInfo:model];
-    }
+    KK_InvestmenModel *model = [__KKInvestmentManager.curent_investmnet_data objectAtIndex:indexPath.row];
+    [cell updateInfo:model];
     __weak typeof(self) weakSelf = self;
     cell.actionClick = ^(NSInteger index) {
         switch (index) {
@@ -72,7 +65,7 @@
                 break;
             case 1:
             {
-                
+                [weakSelf toInfo:model];
             }
                 break;
             case 2:
@@ -97,9 +90,43 @@
 }
 
 - (void)toDetail {
-    KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
+    KK_PersonDetailViewController *vc = [KK_PersonDetailViewController new];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)toInfo:(KK_InvestmenModel *)model {
+    
+    __weak typeof(self) weakSelf = self;
+    KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
+    NSDateFormatter *formater = [NSDateFormatter new];
+    formater.dateFormat = @"yyyy-MM-dd- HH:mm";
+    if (!model) {
+        model = [KK_InvestmenModel new];
+        model.ID = [formater stringFromDate:[NSDate date]];
+        model.investment_type = @(__KKInvestmentManager.current_investment_type);
+    }else {
+        model = [model copy];
+    }
+    
+    if (!model.id_info) {
+        model.id_info = [KK_IDInfo new];
+    }
+    if (!model.bank_card_info) {
+        model.bank_card_info = [KK_BankCardInfo new];
+    }
+    if (model.createDataStr.length < 1) {
+        model.createData = [NSDate date];
+        model.createDataStr = [formater stringFromDate:model.createData];
+    }
+    vc.model = model;
+    vc.actionPassPersonInfo = ^(KK_InvestmenModel *model, BOOL isStore) {
+        if (isStore) {
+            [__KKInvestmentManager updateInvestmentModel:model toState:InvestmentStateNormal];
+            [weakSelf.tableView reloadData];
+        }
+    };
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (void)telPhone:(NSString *)phone {

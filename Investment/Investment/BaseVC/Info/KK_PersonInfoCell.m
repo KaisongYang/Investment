@@ -208,38 +208,84 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 }
 
 - (void)action:(UIButton *)sender {
-    UIDatePicker *picker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, kScreenHeight-200, kScreenWidth, 200)];
-    picker.calendar = [NSCalendar currentCalendar];
-    picker.locale = [NSLocale localeWithLocaleIdentifier:@"zh"];
-    picker.datePickerMode = UIDatePickerModeDate;
-    picker.tag = sender.tag + 100;
-    [picker addTarget:self action:@selector(valueChange:) forControlEvents:UIControlEventValueChanged];
-    [[UIApplication sharedApplication].keyWindow addSubview:picker];
-    [self valueChange:picker];
-}
-- (void)valueChange:(UIDatePicker *)picker {
     
-    NSDate *date = picker.date;
-    NSDateFormatter *formater = [NSDateFormatter new];
-    formater.dateFormat = @"yyyy年MM月dd日";
-    NSString *str = [formater stringFromDate:date];
-    if (picker.tag == self.startData.tag+100) {
-        [self.startData setTitle:str forState:UIControlStateNormal];
-        self.model.startData = str;
-    }else if (picker.tag == self.endData.tag+100) {
-        [self.endData setTitle:str forState:UIControlStateNormal];
-        self.model.endData = str;
+    for (UIView *v in [UIApplication sharedApplication].keyWindow.subviews) {
+        if ([v isKindOfClass:[UIDatePicker class]]) {
+            [v removeFromSuperview];
+            break;
+        }
     }
     
+    NSString *startStr = self.model.startDataStr;
+    NSString *endStr = self.model.endDataStr;
+
+    NSDate *startDate = [NSDate date];
+    NSDate *endDate = [NSDate date];
+    NSDateFormatter *formater = [NSDateFormatter new];
+    formater.dateFormat = @"yyyy-MM-dd- HH:mm";
+    if (startStr.length) {
+        startDate = [formater dateFromString:startStr];
+    }
+    if (endStr.length) {
+        endDate = [formater dateFromString:endStr];
+    }
+    
+    NSDate *date = sender.tag == self.startData.tag ? startDate : endDate;
+    __weak typeof(self) weakSelf = self;
+    WSDatePickerView *picker = [[WSDatePickerView alloc] initWithDateStyle:DateStyleShowYearMonthDayHourMinute scrollToDate:date CompleteBlock:^(NSDate *d) {
+        
+        NSString *str = [formater stringFromDate:d];
+        if (sender.tag == weakSelf.startData.tag) {
+            [weakSelf.startData setTitle:str forState:UIControlStateNormal];
+            weakSelf.model.startDataStr = str;
+            weakSelf.model.startData = date;
+        }else if (sender.tag == weakSelf.endData.tag) {
+            [weakSelf.endData setTitle:str forState:UIControlStateNormal];
+            weakSelf.model.endDataStr = str;
+            weakSelf.model.endData = date;
+        }
+    }];
+    [picker show];
+    if (sender.tag == self.startData.tag) {
+        if (self.model.endDataStr.length) {
+            picker.maxLimitDate = [formater dateFromString:self.model.endDataStr];
+        }
+    }else {
+        if (self.model.startDataStr.length) {
+            picker.minLimitDate = [formater dateFromString:self.model.startDataStr];
+        }
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     return YES;
 }
-
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-
-    
+    NSString *text = textField.text ?:@"";
+    switch (textField.tag) {
+        case kBaseTag + 3:
+        {
+            self.model.id_info.id_name = text;
+        }
+            break;
+        case kBaseTag + 4:
+        {
+            self.model.phone = text;
+        }
+            break;
+        case kBaseTag + 5:
+        {
+            self.model.id_info.id_address = text;
+        }
+            break;
+        case kBaseTag + 6:
+        {
+            self.model.rate = text;
+        }
+            break;
+        default:
+            break;
+    }
 }
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSLog(@"--%zd--%@", textField.tag, textField.text);
@@ -252,6 +298,12 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
     _phoneTF.text = model.phone;
     _addressTF.text = model.id_info.id_address;
     _rateTF.text = model.rate;
+    if (model.startDataStr.length) {
+        [_startData setTitle:model.startDataStr forState:UIControlStateNormal];
+    }
+    if (model.endDataStr.length) {
+        [_endData setTitle:model.endDataStr forState:UIControlStateNormal];
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

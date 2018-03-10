@@ -16,88 +16,55 @@ static KK_InvestmentManager *mgr = nil;
     static dispatch_once_t once;
     dispatch_once(&once, ^{
         mgr = [[self alloc] init];
+        [mgr setUp];
     });
     return mgr;
 }
 
+- (void)setUp {
+    self.current_investment_type = InvestmentTypeBorrow;
+    [self createDataBaseWithName:[NSString stringWithFormat:@"kk_borrow_lend_%@", [OpenUDID value]]];
+}
+
 - (void)updateInvestmentModel:(KK_InvestmenModel *)model toState:(InvestmentState)state; {
     
-    if (model.investment_state == state) {
-        return;
-    }
-    switch (state) {
-        case InvestmentStateNormal:
-        {
-            if (model.investment_type == InvestmentTypeBorrow) {
-                [self.borrowArrM insertObject:model atIndex:0];
-            }else {
-                [self.lendArrM insertObject:model atIndex:0];
-            }
-            if (model.investment_state == InvestmentStateTerminate) {
-                [self.historyArrM removeObject:model];
-            }
-        }
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    [realm transactionWithBlock:^{
+        model.investment_state = @(state);
+        [realm addOrUpdateObject:model];
+    }];
+}
+
+- (void)createDataBaseWithName:(NSString *)databaseName {
+    NSString *docPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *filePath = [docPath stringByAppendingPathComponent:databaseName];
+    NSLog(@"数据库：-- %@", filePath);
+    
+    RLMRealmConfiguration *config = [RLMRealmConfiguration defaultConfiguration];
+    config.fileURL = [NSURL URLWithString:filePath];
+    config.readOnly = NO;
+    config.schemaVersion = 1.0;
+    config.migrationBlock = ^(RLMMigration * _Nonnull migration, uint64_t oldSchemaVersion) {
+        
+    };
+    [RLMRealmConfiguration setDefaultConfiguration:config];
+}
+
+#pragma mark -- setting && getting
+- (RLMArray *)curent_investmnet_data {
+    switch (self.current_investment_type) {
+        case InvestmentTypeBorrow:
+            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_type = 0"];
             break;
-        case InvestmentStateSuspend:
-        {
-            
-        }
+        case InvestmentTypeLend:
+            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_type = 1"];
             break;
-        case InvestmentStateTerminate:
-        {
-            [self.historyArrM insertObject:model atIndex:0];
-        }
+        case InvestmentTypeHistory:
+            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_type = 2"];
             break;
         default:
             break;
     }
-    model.investment_state = state;
+    return nil;
 }
-
-#pragma mark -- setting && getting
-- (NSMutableArray *)borrowArrM {
-    if (!_borrowArrM) {
-        _borrowArrM = [NSMutableArray arrayWithCapacity:1];
-    }
-    return _borrowArrM;
-}
-- (NSMutableArray *)lendArrM {
-    if (!_lendArrM) {
-        _lendArrM = [NSMutableArray arrayWithCapacity:1];
-    }
-    return _lendArrM;
-}
-- (NSMutableArray *)historyArrM {
-    if (!_historyArrM) {
-        _historyArrM = [NSMutableArray arrayWithCapacity:1];
-    }
-    return _historyArrM;
-}
-- (NSMutableArray *)curent_investmnet_data {
-    if (!_curent_investmnet_data) {
-        _curent_investmnet_data = [NSMutableArray arrayWithCapacity:1];
-    }
-    return _curent_investmnet_data;
-}
-
-- (void)setCurrent_investment_type:(InvestmentType)current_investment_type {
-    if (_current_investment_type != current_investment_type) {
-        _current_investment_type = current_investment_type;
-        switch (current_investment_type) {
-            case InvestmentTypeBorrow:
-                self.curent_investmnet_data = [self.borrowArrM mutableCopy];
-                break;
-            case InvestmentTypeLend:
-                self.curent_investmnet_data = [self.lendArrM mutableCopy];
-                break;
-            case InvestmentTypeHistory:
-                self.curent_investmnet_data = [self.historyArrM mutableCopy];
-                break;
-            default:
-                break;
-        }
-    }
-    
-}
-
 @end

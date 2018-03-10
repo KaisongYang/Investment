@@ -95,16 +95,8 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         [_rate mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(0);
             make.centerY.mas_equalTo(_icon.mas_centerY);
-            make.width.mas_equalTo(80);
+            make.width.mas_equalTo(120);
         }];
-        
-//        UIView *line = [UIView new];
-//        [self.contentView addSubview:line];
-//        line.backgroundColor = [UIColor lightGrayColor];
-//        [line mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.left.right.bottom.mas_equalTo(0);
-//            make.height.mas_equalTo(0.5);
-//        }];
     }
     if (!_segmentView) {
         _segmentView = [[KK_SegmentView alloc] initWithTitles:@[@"电话", @"编辑", @"新增"] images:@[]];
@@ -118,6 +110,10 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 
 - (void)updateInfo:(KK_InvestmenModel *)model {
  
+    self.name.text = model.id_info.id_name ?:@"";
+    self.phone.text = model.phone ?:@"";
+    self.address.text = model.id_info.id_address ?:@"";
+    self.rate.text = model.rate ? [NSString stringWithFormat:@"%.1f%%", [model.rate floatValue]] :@"";
     __weak typeof(self) weakSelf = self;
     self.segmentView.actionClick = ^(NSInteger index) {
         weakSelf.actionClick(index);
