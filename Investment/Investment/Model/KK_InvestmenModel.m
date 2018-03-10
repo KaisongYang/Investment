@@ -16,16 +16,20 @@
     model.id_info = [self.id_info copy];
     model.bank_card_info =  [self.bank_card_info copy];
     model.phone = self.phone;
-    model.rate = self.rate;
+    model.borrow_money_info = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+    for (KK_MoneyInfo *info in self.borrow_money_info) {
+        [model.borrow_money_info addObject:info];
+    }
+    model.lend_money_info = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+    for (KK_MoneyInfo *info in self.lend_money_info) {
+        [model.lend_money_info addObject:info];
+    }
+    model.date_info = [self.date_info copy];
+    
     model.investment_type = self.investment_type;
     model.investment_state = self.investment_state;
     model.investment_relationship = self.investment_relationship;
-    model.startData = self.startData;
-    model.startDataStr = self.startDataStr;
-    model.endData = self.endData;
-    model.endDataStr = self.endDataStr;
-    model.createData = self.createData;
-    model.createDataStr = self.createDataStr;
+    
     return model;
 }
 

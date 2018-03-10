@@ -113,7 +113,14 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
     self.name.text = model.id_info.id_name ?:@"";
     self.phone.text = model.phone ?:@"";
     self.address.text = model.id_info.id_address ?:@"";
-    self.rate.text = model.rate ? [NSString stringWithFormat:@"%.1f%%", [model.rate floatValue]] :@"";
+    NSString *rate = @"";
+    if ([model.investment_type isEqual:@(InvestmentTypeBorrow)]) {
+        rate = [model.borrow_money_info[0] rate] ?:@"";
+    }else {
+        rate = [model.lend_money_info[0] rate] ?:@"";
+    }
+    self.rate.text = rate ? [NSString stringWithFormat:@"%.1f%%", [rate floatValue]] :@"";
+    
     __weak typeof(self) weakSelf = self;
     self.segmentView.actionClick = ^(NSInteger index) {
         weakSelf.actionClick(index);

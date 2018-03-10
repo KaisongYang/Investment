@@ -9,24 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "KK_IDInfo.h"
 #import "KK_BankCardInfo.h"
+#import "KK_DateInfo.h"
+#import "KK_MoneyInfo.h"
 
 @class KK_InvestmentSetting;
 
 @interface KK_InvestmenModel : RLMObject<NSCopying>
 
 /**
- 主键，数据库查询需要
+ 主键，数据库查询需要，创建时间戳
  */
 @property NSString *ID;
-/**
- 投资人信息
- */
-@property KK_IDInfo *id_info;
-
-/**
- 银行卡信息
- */
-@property KK_BankCardInfo *bank_card_info;
 
 /**
  手机号
@@ -34,9 +27,29 @@
 @property NSString *phone;
 
 /**
- 费率
+ 投资人身份信息
  */
-@property NSString *rate;
+@property KK_IDInfo *id_info;
+
+/**
+ 投资人银行卡信息
+ */
+@property KK_BankCardInfo *bank_card_info;
+
+/**
+ 时间相关
+ */
+@property KK_DateInfo *date_info;
+
+/**
+ 借入资产信息
+ */
+@property RLMArray<KK_MoneyInfo *> *borrow_money_info;
+
+/**
+ 借出资产信息
+ */
+@property RLMArray<KK_MoneyInfo *> *lend_money_info;
 
 /**
  投资类型
@@ -62,13 +75,6 @@
  4、其他
  */
 @property NSNumber<RLMInt> *investment_relationship;
-
-@property NSDate *startData;
-@property NSString *startDataStr;
-@property NSDate *endData;
-@property NSString *endDataStr;
-@property NSDate *createData;
-@property NSString *createDataStr;
 
 @end
 

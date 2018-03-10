@@ -105,6 +105,8 @@
         model = [KK_InvestmenModel new];
         model.ID = [formater stringFromDate:[NSDate date]];
         model.investment_type = @(__KKInvestmentManager.current_investment_type);
+        model.borrow_money_info = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+        model.lend_money_info = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
     }else {
         model = [model copy];
     }
@@ -115,10 +117,7 @@
     if (!model.bank_card_info) {
         model.bank_card_info = [KK_BankCardInfo new];
     }
-    if (model.createDataStr.length < 1) {
-        model.createData = [NSDate date];
-        model.createDataStr = [formater stringFromDate:model.createData];
-    }
+    
     vc.model = model;
     vc.actionPassPersonInfo = ^(KK_InvestmenModel *model, BOOL isStore) {
         if (isStore) {

@@ -18,6 +18,8 @@
 		4BC8F97D2053719200C183DB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F9792053719200C183DB /* UIView+Extension.m */; };
 		4BC8F982205382C300C183DB /* KK_PersonDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F981205382C300C183DB /* KK_PersonDetailTableViewCell.m */; };
 		4BC8F98C2053CADC00C183DB /* KK_TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F98B2053CADC00C183DB /* KK_TabBarViewController.m */; };
+		4BC8F98F2053CEE400C183DB /* KK_DateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F98E2053CEE400C183DB /* KK_DateInfo.m */; };
+		4BC8F9922053D1BF00C183DB /* KK_MoneyInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BC8F9912053D1BF00C183DB /* KK_MoneyInfo.m */; };
 		4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AE5B2045901800992673 /* AppDelegate.m */; };
 		4BD6AE622045901800992673 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE602045901800992673 /* Main.storyboard */; };
 		4BD6AE642045901800992673 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4BD6AE632045901800992673 /* Assets.xcassets */; };
@@ -77,6 +79,10 @@
 		4BC8F981205382C300C183DB /* KK_PersonDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_PersonDetailTableViewCell.m; sourceTree = "<group>"; };
 		4BC8F98A2053CADC00C183DB /* KK_TabBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_TabBarViewController.h; sourceTree = "<group>"; };
 		4BC8F98B2053CADC00C183DB /* KK_TabBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_TabBarViewController.m; sourceTree = "<group>"; };
+		4BC8F98D2053CEE400C183DB /* KK_DateInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_DateInfo.h; sourceTree = "<group>"; };
+		4BC8F98E2053CEE400C183DB /* KK_DateInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_DateInfo.m; sourceTree = "<group>"; };
+		4BC8F9902053D1BF00C183DB /* KK_MoneyInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_MoneyInfo.h; sourceTree = "<group>"; };
+		4BC8F9912053D1BF00C183DB /* KK_MoneyInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_MoneyInfo.m; sourceTree = "<group>"; };
 		4BD6AE572045901800992673 /* Investment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Investment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BD6AE5A2045901800992673 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4BD6AE5B2045901800992673 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -296,6 +302,10 @@
 		4BD6AEA52045ACA100992673 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4BC8F9902053D1BF00C183DB /* KK_MoneyInfo.h */,
+				4BC8F9912053D1BF00C183DB /* KK_MoneyInfo.m */,
+				4BC8F98D2053CEE400C183DB /* KK_DateInfo.h */,
+				4BC8F98E2053CEE400C183DB /* KK_DateInfo.m */,
 				4BD6AEAC2045AD2A00992673 /* KK_IDInfo.h */,
 				4BD6AEAD2045AD2A00992673 /* KK_IDInfo.m */,
 				4BD6AEA92045ACE400992673 /* KK_BankCardInfo.h */,
@@ -527,6 +537,7 @@
 				4B00F88820470449000F028F /* KK_PersonInformationViewController.m in Sources */,
 				4BC8F982205382C300C183DB /* KK_PersonDetailTableViewCell.m in Sources */,
 				4B00F87F2046E9A1000F028F /* KK_InvestmentManager.m in Sources */,
+				4BC8F98F2053CEE400C183DB /* KK_DateInfo.m in Sources */,
 				4BD6AE6A2045901800992673 /* main.m in Sources */,
 				4B00F8822046EF4F000F028F /* KK_SegmentView.m in Sources */,
 				4BC8F97D2053719200C183DB /* UIView+Extension.m in Sources */,
@@ -542,6 +553,7 @@
 				4BD6AEAE2045AD2A00992673 /* KK_IDInfo.m in Sources */,
 				4BD6AE93204598C800992673 /* KK_LendMoneyViewController.m in Sources */,
 				4BC8F97B2053719200C183DB /* WSDatePickerView.m in Sources */,
+				4BC8F9922053D1BF00C183DB /* KK_MoneyInfo.m in Sources */,
 				4BD6AE9620459AB000992673 /* KK_BorrowAndLendBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

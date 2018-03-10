@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UITextField *idTF;
 @property (nonatomic, strong) UIButton *startData;
 @property (nonatomic, strong) UIButton *endData;
-
+@property (nonatomic, strong) KK_InvestmenModel *tempModel;
 @end
 
 static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
@@ -216,8 +216,8 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         }
     }
     
-    NSString *startStr = self.model.startDataStr;
-    NSString *endStr = self.model.endDataStr;
+    NSString *startStr = self.model.date_info.startDataStr;
+    NSString *endStr = self.model.date_info.endDataStr;
 
     NSDate *startDate = [NSDate date];
     NSDate *endDate = [NSDate date];
@@ -237,22 +237,22 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         NSString *str = [formater stringFromDate:d];
         if (sender.tag == weakSelf.startData.tag) {
             [weakSelf.startData setTitle:str forState:UIControlStateNormal];
-            weakSelf.model.startDataStr = str;
-            weakSelf.model.startData = date;
+            weakSelf.model.date_info.startDataStr = str;
+            weakSelf.model.date_info.startData = date;
         }else if (sender.tag == weakSelf.endData.tag) {
             [weakSelf.endData setTitle:str forState:UIControlStateNormal];
-            weakSelf.model.endDataStr = str;
-            weakSelf.model.endData = date;
+            weakSelf.model.date_info.endDataStr = str;
+            weakSelf.model.date_info.endData = date;
         }
     }];
     [picker show];
     if (sender.tag == self.startData.tag) {
-        if (self.model.endDataStr.length) {
-            picker.maxLimitDate = [formater dateFromString:self.model.endDataStr];
+        if (self.model.date_info.endDataStr.length) {
+            picker.maxLimitDate = [formater dateFromString:self.model.date_info.endDataStr];
         }
     }else {
-        if (self.model.startDataStr.length) {
-            picker.minLimitDate = [formater dateFromString:self.model.startDataStr];
+        if (self.model.date_info.startDataStr.length) {
+            picker.minLimitDate = [formater dateFromString:self.model.date_info.startDataStr];
         }
     }
 }
@@ -280,7 +280,11 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
             break;
         case kBaseTag + 6:
         {
-            self.model.rate = text;
+            if ([self.model.investment_type isEqual:@(InvestmentTypeBorrow)]) {
+                [self.model.borrow_money_info[0] setRate:text ?:@""];
+            }else {
+                [self.model.lend_money_info[0] setRate:text ?:@""];
+            }
         }
             break;
         default:
@@ -294,15 +298,20 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 
 - (void)setModel:(KK_InvestmenModel *)model {
     _model = model;
+    self.tempModel = [model copy];
     _nameTF.text = model.id_info.id_name;
     _phoneTF.text = model.phone;
     _addressTF.text = model.id_info.id_address;
-    _rateTF.text = model.rate;
-    if (model.startDataStr.length) {
-        [_startData setTitle:model.startDataStr forState:UIControlStateNormal];
+    if ([model.investment_type isEqual:@(InvestmentTypeBorrow)]) {
+        _rateTF.text = [self.model.borrow_money_info[0] rate] ?:@"";
+    }else {
+        _rateTF.text = [self.model.lend_money_info[0] rate] ?:@"";
     }
-    if (model.endDataStr.length) {
-        [_endData setTitle:model.endDataStr forState:UIControlStateNormal];
+    if (model.date_info.startDataStr.length) {
+        [_startData setTitle:model.date_info.startDataStr forState:UIControlStateNormal];
+    }
+    if (model.date_info.endDataStr.length) {
+        [_endData setTitle:model.date_info.endDataStr forState:UIControlStateNormal];
     }
 }
 
