@@ -17,6 +17,22 @@
 @property NSString *number;
 
 /**
+ 投资类型
+ 1、借入
+ 2、借出
+ 3、历史
+ */
+@property NSNumber<RLMInt> *investment_type;
+
+/**
+ 投资状态
+ 1、正常
+ 2、暂停
+ 3、终止
+ */
+@property NSNumber<RLMInt> *investment_state;
+
+/**
  钱
  */
 @property NSString *money;

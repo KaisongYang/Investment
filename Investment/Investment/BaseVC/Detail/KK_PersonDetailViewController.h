@@ -11,5 +11,6 @@
 @interface KK_PersonDetailViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) KK_InvestmenModel *model;
 
 @end

@@ -9,5 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @interface KK_PersonDetailTableViewCell : UITableViewCell
-
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+@property (nonatomic, copy) ActionClick actionClick;
+@property (nonatomic, strong) KK_InvestmenModel *model;
++ (CGFloat)cellHeight;
 @end
+
+@interface KK_PersonDetailBorrowAndLendCell : UITableViewCell
++ (instancetype)cellWithTableView:(UITableView *)tableView;
+@property (nonatomic, copy) ActionClick actionClick;
+@property (nonatomic, strong) KK_MoneyInfo *model;
++ (CGFloat)cellHeight;
+@end
+

@@ -15,10 +15,6 @@
     info.startDataStr = self.startDataStr;
     info.endData = self.endData;
     info.endDataStr = self.endDataStr;
-    info.editedDataArrM = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([NSDate class])];
-    for (NSDate *date in self.editedDataArrM) {
-        [info.editedDataArrM addObject:date];
-    }
     return info;
 }
 @end

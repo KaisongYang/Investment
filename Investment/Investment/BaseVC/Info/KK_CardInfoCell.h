@@ -1,19 +1,16 @@
 //
-//  KK_BorrowAndLendTableViewCell.h
+//  KK_CardInfoCell.h
 //  Investment
 //
-//  Created by kk on 2018/2/27.
+//  Created by 杨开松 on 2018/3/17.
 //  Copyright © 2018年 KaisongYang. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "KK_InvestmentSetting.h"
-#import "KK_InvestmenModel.h"
 
-@interface KK_BorrowAndLendTableViewCell : UITableViewCell
-
+@interface KK_CardInfoCell : UITableViewCell
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @property (nonatomic, copy) ActionClick actionClick;
-- (void)updateInfo:(KK_InvestmenModel *)model;
+@property (nonatomic, strong) KK_InvestmenModel *model;
 + (CGFloat)cellHeight;
 @end

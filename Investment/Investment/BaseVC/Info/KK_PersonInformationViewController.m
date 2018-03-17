@@ -8,6 +8,10 @@
 
 #import "KK_PersonInformationViewController.h"
 #import "KK_PersonInfoCell.h"
+#import "KK_BorrowAndLendInfoCell.h"
+#import "KK_IDInfoCell.h"
+#import "KK_CardInfoCell.h"
+#import "KK_SelectedDataCell.h"
 
 @interface KK_PersonInformationViewController ()
 
@@ -74,14 +78,109 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    switch (self.editState) {
+        case EditStatePersonInitial:
+            return 5;
+            break;
+        case EditStatePersonNormalInfo:
+            return 4;
+            break;
+        case EditStatePersonBorrowOrLendMoney:
+            return 2;
+            break;
+        default:
+            break;
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    KK_PersonInfoCell *cell = [KK_PersonInfoCell cellWithTableView:tableView];
-    cell.model = self.model;
-    return cell;
+    switch (indexPath.row) {
+        case 0:
+        {
+            KK_SelectedDataCell *cell = [KK_SelectedDataCell cellWithTableView:tableView];
+            cell.model = self.model;
+            return cell;
+        }
+            break;
+        case 1:
+        {
+            switch (self.editState) {
+                case EditStatePersonInitial:
+                case EditStatePersonNormalInfo:
+                {
+                    KK_PersonInfoCell *cell = [KK_PersonInfoCell cellWithTableView:tableView];
+                    cell.model = self.model;
+                    return cell;
+                }
+                    break;
+                case EditStatePersonBorrowOrLendMoney:
+                {
+                    KK_BorrowAndLendInfoCell *cell = [KK_BorrowAndLendInfoCell cellWithTableView:tableView];
+                    cell.model = self.model;
+                    return cell;
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+        case 2:
+        {
+            switch (self.editState) {
+                case EditStatePersonInitial:
+                {
+                    KK_BorrowAndLendInfoCell *cell = [KK_BorrowAndLendInfoCell cellWithTableView:tableView];
+                    cell.model = self.model;
+                    return cell;
+                }
+                    break;
+                case EditStatePersonNormalInfo:
+                {
+                    KK_IDInfoCell *cell = [KK_IDInfoCell cellWithTableView:tableView];
+                    cell.model = self.model;
+                    return cell;
+                }
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+        case 3:
+            switch (self.editState) {
+                case EditStatePersonInitial:
+                {
+                    KK_IDInfoCell *cell = [KK_IDInfoCell cellWithTableView:tableView];
+                    cell.model = self.model;
+                    return cell;
+                }
+                    break;
+                case EditStatePersonNormalInfo:
+                {
+                    KK_CardInfoCell *cell = [KK_CardInfoCell cellWithTableView:tableView];
+                    cell.model = self.model;
+                    return cell;
+                }
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+        case 4:
+        {
+            KK_CardInfoCell *cell = [KK_CardInfoCell cellWithTableView:tableView];
+            cell.model = self.model;
+            return cell;
+        }
+            break;
+        default:
+            break;
+    }
+    return [UITableViewCell new];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,7 +188,53 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 300;
+    switch (indexPath.row) {
+        case 0:
+            return [KK_SelectedDataCell cellHeight];
+            break;
+        case 1:
+        {
+            if (self.editState == EditStatePersonBorrowOrLendMoney) {
+                return [KK_BorrowAndLendInfoCell cellHeight];
+            }else {
+                return [KK_PersonInfoCell cellHeight];
+            }
+        }
+            break;
+        case 2:
+        {
+            switch (self.editState) {
+                case EditStatePersonInitial:
+                    return [KK_BorrowAndLendInfoCell cellHeight];
+                    break;
+                case EditStatePersonNormalInfo:
+                    return [KK_IDInfoCell cellHeight];
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+        case 3:
+        {
+            switch (self.editState) {
+                case EditStatePersonInitial:
+                    return [KK_IDInfoCell cellHeight];
+                    break;
+                case EditStatePersonNormalInfo:
+                    return [KK_CardInfoCell cellHeight];
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+        case 4:
+            return [KK_CardInfoCell cellHeight];
+        default:
+            break;
+    }
+    return 0.01;
 }
 
 #pragma mark - setting & getting
@@ -99,6 +244,7 @@
         [self.view addSubview:_tableView];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
         [_tableView mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.bottom.mas_equalTo(0);
             make.top.mas_equalTo(64);

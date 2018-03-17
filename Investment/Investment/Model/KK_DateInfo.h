@@ -14,7 +14,6 @@
 @property NSString *startDataStr;
 @property NSDate *endData;
 @property NSString *endDataStr;
-@property RLMArray<NSDate *> *editedDataArrM;
 
 @end
 RLM_ARRAY_TYPE(KK_DateInfo)

@@ -36,6 +36,10 @@
 		4BD6AEA42045A9EC00992673 /* KK_InvestmenModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEA32045A9EC00992673 /* KK_InvestmenModel.m */; };
 		4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEAA2045ACE400992673 /* KK_BankCardInfo.m */; };
 		4BD6AEAE2045AD2A00992673 /* KK_IDInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD6AEAD2045AD2A00992673 /* KK_IDInfo.m */; };
+		4BF910B9205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910B8205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.m */; };
+		4BF910BC205CBB6E0084C28D /* KK_IDInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910BB205CBB6E0084C28D /* KK_IDInfoCell.m */; };
+		4BF910BF205CBFBA0084C28D /* KK_CardInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910BE205CBFBA0084C28D /* KK_CardInfoCell.m */; };
+		4BF910C2205CFCB90084C28D /* KK_SelectedDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910C1205CFCB90084C28D /* KK_SelectedDataCell.m */; };
 		E091F29B7111978CC4FFA3C8 /* libPods-Investment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A3D473A2B8D815527339F6 /* libPods-Investment.a */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +119,14 @@
 		4BD6AEAA2045ACE400992673 /* KK_BankCardInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_BankCardInfo.m; sourceTree = "<group>"; };
 		4BD6AEAC2045AD2A00992673 /* KK_IDInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_IDInfo.h; sourceTree = "<group>"; };
 		4BD6AEAD2045AD2A00992673 /* KK_IDInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_IDInfo.m; sourceTree = "<group>"; };
+		4BF910B7205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_BorrowAndLendInfoCell.h; sourceTree = "<group>"; };
+		4BF910B8205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_BorrowAndLendInfoCell.m; sourceTree = "<group>"; };
+		4BF910BA205CBB6E0084C28D /* KK_IDInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_IDInfoCell.h; sourceTree = "<group>"; };
+		4BF910BB205CBB6E0084C28D /* KK_IDInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_IDInfoCell.m; sourceTree = "<group>"; };
+		4BF910BD205CBFBA0084C28D /* KK_CardInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_CardInfoCell.h; sourceTree = "<group>"; };
+		4BF910BE205CBFBA0084C28D /* KK_CardInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_CardInfoCell.m; sourceTree = "<group>"; };
+		4BF910C0205CFCB90084C28D /* KK_SelectedDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_SelectedDataCell.h; sourceTree = "<group>"; };
+		4BF910C1205CFCB90084C28D /* KK_SelectedDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_SelectedDataCell.m; sourceTree = "<group>"; };
 		8A19E1E7648E793F797B244C /* Pods-Investment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Investment/Pods-Investment.debug.xcconfig"; sourceTree = "<group>"; };
 		9F098FC72B55123E24E5FF5D /* Pods-Investment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Investment/Pods-Investment.release.xcconfig"; sourceTree = "<group>"; };
 		A1A3D473A2B8D815527339F6 /* libPods-Investment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Investment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -178,6 +190,14 @@
 				4B00F88720470449000F028F /* KK_PersonInformationViewController.m */,
 				4B3ED34A204C199A00D43DF2 /* KK_PersonInfoCell.h */,
 				4B3ED34B204C199A00D43DF2 /* KK_PersonInfoCell.m */,
+				4BF910B7205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.h */,
+				4BF910B8205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.m */,
+				4BF910BA205CBB6E0084C28D /* KK_IDInfoCell.h */,
+				4BF910BB205CBB6E0084C28D /* KK_IDInfoCell.m */,
+				4BF910BD205CBFBA0084C28D /* KK_CardInfoCell.h */,
+				4BF910BE205CBFBA0084C28D /* KK_CardInfoCell.m */,
+				4BF910C0205CFCB90084C28D /* KK_SelectedDataCell.h */,
+				4BF910C1205CFCB90084C28D /* KK_SelectedDataCell.m */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -506,6 +526,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Investment/Pods-Investment-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
 				"${PODS_ROOT}/LBXScan/LBXScan/UI/CodeScan.bundle",
 				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-back.png",
 				"${PODS_ROOT}/ZBarSDK/iphone/res/zbar-help.html",
@@ -514,6 +535,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/CodeScan.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-back.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zbar-help.html",
@@ -544,17 +566,21 @@
 				4B3ED34C204C199A00D43DF2 /* KK_PersonInfoCell.m in Sources */,
 				4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */,
 				4BC8F97C2053719200C183DB /* NSDate+Extension.m in Sources */,
+				4BF910C2205CFCB90084C28D /* KK_SelectedDataCell.m in Sources */,
 				4B00F88520470413000F028F /* KK_PersonDetailViewController.m in Sources */,
 				4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */,
 				4BD6AE9D2045A1EC00992673 /* KK_InvestmentSetting.m in Sources */,
+				4BF910BF205CBFBA0084C28D /* KK_CardInfoCell.m in Sources */,
 				4BC8F98C2053CADC00C183DB /* KK_TabBarViewController.m in Sources */,
 				4BD6AEA42045A9EC00992673 /* KK_InvestmenModel.m in Sources */,
 				4BD6AE5C2045901800992673 /* AppDelegate.m in Sources */,
 				4BD6AEAE2045AD2A00992673 /* KK_IDInfo.m in Sources */,
 				4BD6AE93204598C800992673 /* KK_LendMoneyViewController.m in Sources */,
 				4BC8F97B2053719200C183DB /* WSDatePickerView.m in Sources */,
+				4BF910BC205CBB6E0084C28D /* KK_IDInfoCell.m in Sources */,
 				4BC8F9922053D1BF00C183DB /* KK_MoneyInfo.m in Sources */,
 				4BD6AE9620459AB000992673 /* KK_BorrowAndLendBaseViewController.m in Sources */,
+				4BF910B9205CBB5A0084C28D /* KK_BorrowAndLendInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

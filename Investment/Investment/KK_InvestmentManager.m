@@ -54,13 +54,13 @@ static KK_InvestmentManager *mgr = nil;
 - (RLMArray *)curent_investmnet_data {
     switch (self.current_investment_type) {
         case InvestmentTypeBorrow:
-            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_type = 0"];
+            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_state != 2 AND borrow_money_info.@count > 0"];
             break;
         case InvestmentTypeLend:
-            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_type = 1"];
+            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_state != 2 AND lend_money_info.@count > 0"];
             break;
         case InvestmentTypeHistory:
-            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_type = 2"];
+            return (RLMArray *)[KK_InvestmenModel objectsWhere:@"investment_state != 0"];
             break;
         default:
             break;

@@ -18,6 +18,7 @@
 #import "KK_InvestmentManager.h"
 
 #import <OpenUDID.h>
+#import <IQKeyboardManager.h>
 #import <Masonry.h>
 #import <ZBarSDK.h>
 

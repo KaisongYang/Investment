@@ -21,7 +21,7 @@
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    __KKInvestmentManager.current_investment_type = tabBarController.selectedIndex+1;
+    __KKInvestmentManager.current_investment_type = tabBarController.selectedIndex;
 }
 
 - (void)didReceiveMemoryWarning {

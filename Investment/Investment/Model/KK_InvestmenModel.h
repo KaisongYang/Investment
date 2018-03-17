@@ -17,10 +17,9 @@
 @interface KK_InvestmenModel : RLMObject<NSCopying>
 
 /**
- 主键，数据库查询需要，创建时间戳
+ 主键，数据库查询需要
  */
 @property NSString *ID;
-
 /**
  手机号
  */
@@ -39,25 +38,18 @@
 /**
  时间相关
  */
-@property KK_DateInfo *date_info;
+@property (readonly)KK_DateInfo *date_info;
 
 /**
  借入资产信息
  */
-@property RLMArray<KK_MoneyInfo *> *borrow_money_info;
-
+@property RLMArray<KK_MoneyInfo> *borrow_money_info;
+@property (readonly) NSNumber<RLMDouble> *total_borrow_money;
 /**
  借出资产信息
  */
-@property RLMArray<KK_MoneyInfo *> *lend_money_info;
-
-/**
- 投资类型
- 1、借入
- 2、借出
- 3、历史
- */
-@property NSNumber<RLMInt> *investment_type;
+@property RLMArray<KK_MoneyInfo> *lend_money_info;
+@property (readonly) NSNumber<RLMDouble> *total_lend_money;
 
 /**
  投资状态

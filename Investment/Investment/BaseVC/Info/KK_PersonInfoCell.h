@@ -13,4 +13,5 @@
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 @property (nonatomic, copy) ActionClick actionClick;
 @property (nonatomic, strong) KK_InvestmenModel *model;
++ (CGFloat)cellHeight;
 @end

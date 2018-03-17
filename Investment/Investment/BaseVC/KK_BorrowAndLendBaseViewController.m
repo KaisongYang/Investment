@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.tableView reloadData];
     [self setNavBar];
 }
@@ -37,7 +38,7 @@
 }
 
 - (void)btnClick:(UIButton *)sender {
-    [self toInfo:nil];
+    [self toPersonInfoWithModel:nil editState:EditStatePersonInitial];
 }
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
@@ -65,12 +66,12 @@
                 break;
             case 1:
             {
-                [weakSelf toInfo:model];
+                [weakSelf toPersonInfoWithModel:model editState:EditStatePersonNormalInfo];
             }
                 break;
             case 2:
             {
-                
+                [weakSelf toPersonInfoWithModel:model editState:EditStatePersonBorrowOrLendMoney];
             }
                 break;
             default:
@@ -82,33 +83,65 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self toDetail];
+    KK_InvestmenModel *model = [__KKInvestmentManager.curent_investmnet_data objectAtIndex:indexPath.row];
+    [self toDetail:model];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 160;
+    return [KK_BorrowAndLendTableViewCell cellHeight];
 }
 
-- (void)toDetail {
+- (void)toDetail:(KK_InvestmenModel *)model {
     KK_PersonDetailViewController *vc = [KK_PersonDetailViewController new];
+    vc.model = model;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)toInfo:(KK_InvestmenModel *)model {
+- (void)toPersonInfoWithModel:(KK_InvestmenModel *)model editState:(EditState)ediState{
     
     __weak typeof(self) weakSelf = self;
     KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
+    vc.editState = ediState;
     NSDateFormatter *formater = [NSDateFormatter new];
     formater.dateFormat = @"yyyy-MM-dd- HH:mm";
     if (!model) {
         model = [KK_InvestmenModel new];
+        model.investment_state = @(InvestmentStateNormal);
         model.ID = [formater stringFromDate:[NSDate date]];
-        model.investment_type = @(__KKInvestmentManager.current_investment_type);
-        model.borrow_money_info = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
-        model.lend_money_info = [[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+        model.borrow_money_info = (RLMArray<KK_MoneyInfo> *)[[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+        if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
+            KK_MoneyInfo *borrow = [KK_MoneyInfo new];
+            borrow.number = @"0";
+            borrow.investment_type = @(InvestmentTypeBorrow);
+            borrow.date_info = [KK_DateInfo new];
+            [model.borrow_money_info insertObject:borrow atIndex:0];
+        }else {
+            model.lend_money_info = (RLMArray<KK_MoneyInfo> *)[[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+            KK_MoneyInfo *lend = [KK_MoneyInfo new];
+            lend.number = @"0";
+            lend.investment_type = @(InvestmentTypeLend);
+            lend.date_info = [KK_DateInfo new];
+            [model.lend_money_info insertObject:[KK_MoneyInfo new] atIndex:0];
+        }
+        
     }else {
         model = [model copy];
+        if (ediState == EditStatePersonBorrowOrLendMoney) {
+            if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
+                KK_MoneyInfo *borrow = [KK_MoneyInfo new];
+                borrow.investment_type = @(InvestmentTypeBorrow);
+                borrow.number = [NSString stringWithFormat:@"%zd", model.borrow_money_info.count];
+                borrow.date_info = [KK_DateInfo new];
+                [model.borrow_money_info insertObject:borrow atIndex:0];
+            }else {
+                KK_MoneyInfo *lend = [KK_MoneyInfo new];
+                lend.number = [NSString stringWithFormat:@"%zd", model.lend_money_info.count];
+                lend.investment_type = @(InvestmentTypeLend);
+                lend.date_info = [KK_DateInfo new];
+                [model.lend_money_info insertObject:[KK_MoneyInfo new] atIndex:0];
+            }
+        }
     }
     
     if (!model.id_info) {
@@ -152,6 +185,7 @@
         [self.view addSubview:_tableView];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.tableFooterView = [UIView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;

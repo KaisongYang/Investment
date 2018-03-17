@@ -11,6 +11,7 @@
 @interface KK_PersonInformationViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) EditState editState;
 @property (nonatomic, strong) KK_InvestmenModel *model;
 @property (nonatomic, copy) ActionPassPersonInfo actionPassPersonInfo;
 @end

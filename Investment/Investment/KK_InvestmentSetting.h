@@ -17,10 +17,15 @@ typedef NS_ENUM(NSUInteger, InvestmentType) {
 };
 
 typedef NS_ENUM(NSUInteger, InvestmentState) {
-    InvestmentStateNone,            // 新建任务
-    InvestmentStateNormal = 1,      // 正常
-    InvestmentStateSuspend,         // 暂停
-    InvestmentStateTerminate,       // 终止
+    InvestmentStateNormal = 0,          // 正常
+    InvestmentStateSuspend,             // 暂停
+    InvestmentStateTerminate,           // 终止
+};
+
+typedef NS_ENUM(NSUInteger, EditState) {
+    EditStatePersonInitial = 0,             // 初始化（包含所有信息）
+    EditStatePersonNormalInfo,              // 用户信息
+    EditStatePersonBorrowOrLendMoney,       // 借贷金钱
 };
 
 typedef void(^ActionClick)(NSInteger index);
