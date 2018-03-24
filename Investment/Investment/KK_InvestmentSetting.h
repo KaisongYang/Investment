@@ -34,6 +34,8 @@ typedef void(^ActionPassPersonInfo)(KK_InvestmenModel *model, BOOL isStore);
 @interface KK_InvestmentSetting : NSObject
 + (instancetype)shareInstance;
 
+@property (nonatomic, assign) BOOL useTouchID;
+
 - (NSString *)openUDID;
 - (NSString *)accountPath;
 - (NSString *)cachePath;

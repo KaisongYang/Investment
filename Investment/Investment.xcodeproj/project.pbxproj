@@ -40,6 +40,8 @@
 		4BF910BC205CBB6E0084C28D /* KK_IDInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910BB205CBB6E0084C28D /* KK_IDInfoCell.m */; };
 		4BF910BF205CBFBA0084C28D /* KK_CardInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910BE205CBFBA0084C28D /* KK_CardInfoCell.m */; };
 		4BF910C2205CFCB90084C28D /* KK_SelectedDataCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BF910C1205CFCB90084C28D /* KK_SelectedDataCell.m */; };
+		4BFAB290206647C900DC082B /* KK_TouchID.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BFAB28F206647C900DC082B /* KK_TouchID.m */; };
+		4BFAB292206647EB00DC082B /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BFAB291206647EB00DC082B /* LocalAuthentication.framework */; };
 		E091F29B7111978CC4FFA3C8 /* libPods-Investment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A3D473A2B8D815527339F6 /* libPods-Investment.a */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +129,9 @@
 		4BF910BE205CBFBA0084C28D /* KK_CardInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_CardInfoCell.m; sourceTree = "<group>"; };
 		4BF910C0205CFCB90084C28D /* KK_SelectedDataCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KK_SelectedDataCell.h; sourceTree = "<group>"; };
 		4BF910C1205CFCB90084C28D /* KK_SelectedDataCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KK_SelectedDataCell.m; sourceTree = "<group>"; };
+		4BFAB28E206647C900DC082B /* KK_TouchID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KK_TouchID.h; sourceTree = "<group>"; };
+		4BFAB28F206647C900DC082B /* KK_TouchID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KK_TouchID.m; sourceTree = "<group>"; };
+		4BFAB291206647EB00DC082B /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		8A19E1E7648E793F797B244C /* Pods-Investment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Investment/Pods-Investment.debug.xcconfig"; sourceTree = "<group>"; };
 		9F098FC72B55123E24E5FF5D /* Pods-Investment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Investment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Investment/Pods-Investment.release.xcconfig"; sourceTree = "<group>"; };
 		A1A3D473A2B8D815527339F6 /* libPods-Investment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Investment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4BFAB292206647EB00DC082B /* LocalAuthentication.framework in Frameworks */,
 				E091F29B7111978CC4FFA3C8 /* libPods-Investment.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +240,7 @@
 		4BD6AE592045901800992673 /* Investment */ = {
 			isa = PBXGroup;
 			children = (
+				4BFAB28D206647BA00DC082B /* TouchID */,
 				4BC8F98320538A5F00C183DB /* Category */,
 				4BC8F9722053719200C183DB /* WSDaePickerView */,
 				4BD6AEA52045ACA100992673 /* Model */,
@@ -336,9 +343,19 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4BFAB28D206647BA00DC082B /* TouchID */ = {
+			isa = PBXGroup;
+			children = (
+				4BFAB28E206647C900DC082B /* KK_TouchID.h */,
+				4BFAB28F206647C900DC082B /* KK_TouchID.m */,
+			);
+			path = TouchID;
+			sourceTree = "<group>";
+		};
 		922CA86D2D2C97091AD35508 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4BFAB291206647EB00DC082B /* LocalAuthentication.framework */,
 				A1A3D473A2B8D815527339F6 /* libPods-Investment.a */,
 			);
 			name = Frameworks;
@@ -556,6 +573,7 @@
 				4B3ED34C204C199A00D43DF2 /* KK_PersonInfoCell.m in Sources */,
 				4BD6AEAB2045ACE400992673 /* KK_BankCardInfo.m in Sources */,
 				4BC8F97C2053719200C183DB /* NSDate+Extension.m in Sources */,
+				4BFAB290206647C900DC082B /* KK_TouchID.m in Sources */,
 				4BF910C2205CFCB90084C28D /* KK_SelectedDataCell.m in Sources */,
 				4B00F88520470413000F028F /* KK_PersonDetailViewController.m in Sources */,
 				4BD6AEA12045A43100992673 /* KK_BorrowAndLendTableViewCell.m in Sources */,

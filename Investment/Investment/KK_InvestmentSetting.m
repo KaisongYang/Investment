@@ -13,14 +13,20 @@
 
 NSString *gs_pathOfDocument = nil;
 
-static KK_InvestmentSetting *setting = nil;
 + (instancetype)shareInstance {
-    
-    static dispatch_once_t once;
-    dispatch_once(&once, ^{
-        setting = [[self alloc] init];
-    });
+    static KK_InvestmentSetting *setting = nil;
+    if (!setting) {
+        static dispatch_once_t once;
+        dispatch_once(&once, ^{
+            setting = [[self alloc] init];
+            [setting setUp];
+        });
+    }
     return setting;
+}
+
+- (void)setUp {
+    self.useTouchID = NO;
 }
 
 - (NSString *)pathOfDocument:(NSString *)filePath {
