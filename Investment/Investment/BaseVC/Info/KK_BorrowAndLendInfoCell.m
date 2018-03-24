@@ -79,11 +79,7 @@ static NSString *identifier = @"KK_BorrowAndLendInfoCell";
     if (!_moneyTF) {
         _moneyTF = [UITextField new];
         [self.contentView addSubview:_moneyTF];
-        NSString *placeholder = @"请输入借入xxx元";
-        if (!isBorrow) {
-            placeholder = @"请输入借出xxx元";
-        }
-        _moneyTF.placeholder = placeholder;
+        _moneyTF.placeholder = @"请输入金额xxx元";
         _moneyTF.textColor = [UIColor blackColor];
         _moneyTF.font = [UIFont systemFontOfSize:15];
         _moneyTF.borderStyle = UITextBorderStyleRoundedRect;
@@ -101,7 +97,7 @@ static NSString *identifier = @"KK_BorrowAndLendInfoCell";
     if (!_money) {
         _money = [UILabel new];
         [self.contentView addSubview:_money];
-        _money.text = isBorrow ? @"借入（元）：" : @"借出（元）：";
+        _money.text = @"金额（元）";
         _money.font = [UIFont systemFontOfSize:14];
         _money.textColor = [UIColor blackColor];
         [_money mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -145,6 +141,9 @@ static NSString *identifier = @"KK_BorrowAndLendInfoCell";
 }
 
 - (void)setModel:(KK_InvestmenModel *)model {
+    if (![model isKindOfClass:[KK_InvestmenModel class]]) {
+        return;
+    }
     _model = model;
     self.tempModel = [model copy];
     if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {

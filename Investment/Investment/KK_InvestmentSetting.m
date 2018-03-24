@@ -60,6 +60,57 @@ static KK_InvestmentSetting *setting = nil;
 - (NSString *)cachePath {
     return [NSString stringWithFormat:@"/cache_%@.db", [self openUDID]];
 }
-
+/**
+ 
+ * 开始到结束的时间差
+ 
+ */
+- (NSInteger)dateTimeDifferenceWithStartTime:(NSDate *)startTime endTime:(NSDate *)endTime{
+    
+    //    NSDateFormatter *date = [[NSDateFormatter alloc]init];
+    //
+    //    [date setDateFormat:@"yyyy-MM-dd"];
+    //
+    //    NSDate *startD =[date dateFromString:startTime];
+    //
+    //    NSDate *endD = [date dateFromString:endTime];
+    
+    NSTimeInterval start = [startTime timeIntervalSince1970]*1;
+    
+    NSTimeInterval end = [endTime timeIntervalSince1970]*1;
+    
+    NSTimeInterval value = end - start;
+    
+    //    int second = (int)value %60;//秒
+    //
+    //    int minute = (int)value /60%60;
+    //
+    //    int house = (int)value / (24 *3600)%3600;
+    
+    int day = (int)value / (24 *3600);
+    
+    return day;
+    //    NSString *str;
+    //    if (day != 0) {
+    //
+    //        str = [NSString stringWithFormat:@"耗时%d天%d小时%d分%d秒",day,house,minute,second];
+    //
+    //    }else if (day==0 && house !=0) {
+    //
+    //        str = [NSString stringWithFormat:@"耗时%d小时%d分%d秒",house,minute,second];
+    //
+    //    }else if (day==0 && house==0 && minute!=0) {
+    //
+    //        str = [NSString stringWithFormat:@"耗时%d分%d秒",minute,second];
+    //
+    //    }else{
+    //
+    //        str = [NSString stringWithFormat:@"耗时%d秒",second];
+    //
+    //    }
+    //
+    //    return str;
+    
+}
 @end
 

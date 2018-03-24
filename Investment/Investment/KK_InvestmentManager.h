@@ -31,7 +31,7 @@
  编辑
  */
 - (void)updateInvestmentModel:(KK_InvestmenModel *)model toState:(InvestmentState)state;
-
+- (BOOL)isModelExist:(KK_InvestmenModel *)model;
 @end
 
 #define __KKInvestmentManager [KK_InvestmentManager shareManager]

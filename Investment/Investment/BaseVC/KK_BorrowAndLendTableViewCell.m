@@ -15,7 +15,6 @@
 @property (nonatomic, strong) UILabel *name;
 @property (nonatomic, strong) UILabel *phone;
 @property (nonatomic, strong) UILabel *address;
-@property (nonatomic, strong) UILabel *rate;
 @property (nonatomic, strong) KK_SegmentView *segmentView;
 @end
 
@@ -54,19 +53,6 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         }];
     }
     
-    if (!_rate) {
-        _rate = [UILabel new];
-        [self.contentView addSubview:_rate];
-        _rate.text = @"10%";
-        _rate.font = [UIFont systemFontOfSize:30];
-        _rate.textColor = [UIColor blackColor];
-        [_rate mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(0);
-            make.centerY.mas_equalTo(_icon.mas_centerY);
-            make.width.mas_equalTo(120);
-        }];
-    }
-    
     if (!_name) {
         _name = [UILabel new];
         [self.contentView addSubview:_name];
@@ -76,7 +62,7 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         [_name mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_icon.mas_right).offset(10);
             make.top.mas_equalTo(_icon.mas_top).offset(5);
-            make.right.mas_equalTo(_rate.mas_left);
+            make.right.mas_equalTo(-15);
         }];
     }
     if (!_phone) {
@@ -136,16 +122,12 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 - (void)updateInfo:(KK_InvestmenModel *)model {
  
     self.name.text = model.id_info.id_name ?:@"";
-    self.phone.text = model.phone ?:@"";
-    self.address.text = model.id_info.id_address ?:@"";
-    NSString *rate = @"";
-    if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
-        rate = [model.borrow_money_info[0] rate] ?:@"";
-    }else {
-        rate = [model.lend_money_info[0] rate] ?:@"";
+    NSString *phoneStr = model.phone ?:@"";
+    if (phoneStr.length == 11) {
+        phoneStr = [phoneStr stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
     }
-    self.rate.text = rate ? [NSString stringWithFormat:@"%.1f%%", [rate floatValue]] :@"";
-    
+    self.phone.text = phoneStr ?: @"";
+    self.address.text = model.id_info.id_address ?:@"";
     __weak typeof(self) weakSelf = self;
     self.segmentView.actionClick = ^(NSInteger index) {
         weakSelf.actionClick(index);

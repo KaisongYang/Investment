@@ -36,28 +36,146 @@
 
 #pragma mark - UITableViewDelegate & UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
-        return 1 + self.model.borrow_money_info.count;
+    switch (section) {
+        case 0:
+            return 1;
+            break;
+        case 1:
+            return self.model.borrow_money_info.count;
+            break;
+        case 2:
+            return self.model.lend_money_info.count;
+            break;
+        default:
+            break;
     }
-    return 1 + self.model.lend_money_info.count;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (indexPath.section == 0) {
         KK_PersonDetailTableViewCell *cell = [KK_PersonDetailTableViewCell cellWithTableView:tableView];
         cell.model = self.model;
         return cell;
     }
     KK_PersonDetailBorrowAndLendCell *cell = [KK_PersonDetailBorrowAndLendCell cellWithTableView:tableView];
-    if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
-        cell.model = self.model.borrow_money_info[indexPath.row-1];
+    if (indexPath.section == 1) {
+        cell.model = self.model.borrow_money_info[indexPath.row];
     }else {
-        cell.model = self.model.lend_money_info[indexPath.row-1];
+        cell.model = self.model.lend_money_info[indexPath.row];
     }
     return cell;
+}
+
+#define kSectionHeaderHeight    50.f
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    if (section == 1 && self.model.borrow_money_info.count) {
+        return [self sectionHeaderWithLeftTitle:@"借入数据" rightTitle:nil];
+    }else if (section == 2 && self.model.lend_money_info.count) {
+        return [self sectionHeaderWithLeftTitle:@"借出数据" rightTitle:nil];
+    }
+    return nil;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 10.f)];
+    v.backgroundColor = _COLOR_RGB(0xf9f9f9);
+    return v;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 1 && self.model.borrow_money_info.count) {
+        return kSectionHeaderHeight;
+    }else if (section == 2 && self.model.lend_money_info.count) {
+        return kSectionHeaderHeight;
+    }
+    return 0.f;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 10.f;
+}
+
+- (UIView *)sectionHeaderWithLeftTitle:(NSString *)leftTitle rightTitle:(NSString *)rightTitle; {
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kSectionHeaderHeight)];
+    view.backgroundColor = [UIColor whiteColor];
+    UILabel *left = [UILabel new];
+    left.text = leftTitle ?:@"";
+    left.textColor = _COLOR_RGB(0x1b1b1b);
+    left.font = [UIFont systemFontOfSize:17];
+    [view addSubview:left];
+    [left mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.mas_equalTo(0);
+        make.left.mas_equalTo(15);
+    }];
+    UILabel *right = [UILabel new];
+    right.text = rightTitle ?:@"";
+    right.textColor = _COLOR_RGB(0x585858);
+    right.font = [UIFont systemFontOfSize:13];
+    right.textAlignment = NSTextAlignmentRight;
+    [view addSubview:right];
+    [right mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(-15);
+    }];
+    UIView *line = [UIView new];
+    line.backgroundColor = _COLOR_RGB(0xf1f1f1);
+    [view addSubview:line];
+    [line mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(0);
+        make.height.mas_equalTo(0.5);
+    }];
+    return view;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return NO;
+    }
+    KK_MoneyInfo *model;
+    if (indexPath.section == 1) {
+        model = self.model.borrow_money_info[indexPath.row];
+    }else {
+        model = self.model.lend_money_info[indexPath.row];
+    }
+    if ([model.investment_state intValue] != 0) {
+        return NO;
+    }
+    return YES;
+}
+
+- (NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return nil;
+    }
+    __weak typeof(self) weakSelf = self;
+    KK_MoneyInfo *model;
+    if (indexPath.section == 1) {
+        model = self.model.borrow_money_info[indexPath.row];
+    }else {
+        model = self.model.lend_money_info[indexPath.row];
+    }
+    if ([model.investment_state intValue] != 0) {
+        return nil;
+    }
+    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"结束" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm transactionWithBlock:^{
+            if ([model.investment_state intValue] == 0) {
+                model.investment_state = @(2);
+                model.date_info.endDate = [NSDate date];
+                NSDateFormatter *formater = [NSDateFormatter new];
+                formater.dateFormat = @"yyyy-MM-dd";
+                model.date_info.endDateStr = [formater stringFromDate:model.date_info.endDate];
+            }
+            [realm addOrUpdateObject:model];
+        }];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+    }];
+    return @[action];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -65,8 +183,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return [KK_PersonDetailTableViewCell cellHeight];
+    switch (indexPath.section) {
+        case 0:
+            return [KK_PersonDetailTableViewCell cellHeight];
+            break;
+        default:
+            break;
     }
     return [KK_PersonDetailBorrowAndLendCell cellHeight];
 }
@@ -122,7 +244,7 @@
             make.height.mas_equalTo(50);
         }];
         UIView *line = [UIView new];
-        line.backgroundColor = [UIColor lightGrayColor];
+        line.backgroundColor = _COLOR_RGB(0xf1f1f1);
         [_segmentView addSubview:line];
         [line mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.right.mas_equalTo(0);
@@ -146,7 +268,7 @@
     KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
     vc.editState = ediState;
     NSDateFormatter *formater = [NSDateFormatter new];
-    formater.dateFormat = @"yyyy-MM-dd- HH:mm";
+    formater.dateFormat = @"yyyy-MM-dd";
     if (!model) {
         model = [KK_InvestmenModel new];
         model.investment_state = @(InvestmentStateNormal);

@@ -10,10 +10,9 @@
 
 @interface KK_DateInfo : RLMObject<NSCopying>
 
-@property NSDate *startData;
-@property NSString *startDataStr;
-@property NSDate *endData;
-@property NSString *endDataStr;
-
+@property NSDate *startDate;
+@property NSString *startDateStr;
+@property NSDate *endDate;
+@property NSString *endDateStr;
 @end
 RLM_ARRAY_TYPE(KK_DateInfo)

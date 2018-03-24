@@ -6,10 +6,11 @@ target 'Investment' do
     pod 'IQKeyboardManager'
     pod 'OpenUDID'
     pod 'Realm'
-    pod 'LBXScan/LBXNative','~> 2.3'
-    pod 'LBXScan/LBXZXing','~> 2.3'
-    pod 'LBXScan/LBXZBar','~> 2.3'
-    pod 'LBXScan/UI','~> 2.3'
+    pod 'LJContactManager'
+    #pod 'LBXScan/LBXNative','~> 2.3'
+    #pod 'LBXScan/LBXZXing','~> 2.3'
+    #pod 'LBXScan/LBXZBar','~> 2.3'
+    #pod 'LBXScan/UI','~> 2.3'
 
 end
 	

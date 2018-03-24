@@ -50,6 +50,12 @@ static KK_InvestmentManager *mgr = nil;
     [RLMRealmConfiguration setDefaultConfiguration:config];
 }
 
+- (BOOL)isModelExist:(KK_InvestmenModel *)model; {
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"phone", model.phone];
+    RLMResults *results = [KK_InvestmenModel objectsWithPredicate:pred];
+    return results.count;
+}
+
 #pragma mark -- setting && getting
 - (RLMArray *)curent_investmnet_data {
     switch (self.current_investment_type) {

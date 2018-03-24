@@ -11,6 +11,7 @@
 @interface KK_PersonInfoCell()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *icon;
+@property (nonatomic, strong) UIButton *contactBtn;
 @property (nonatomic, strong) UILabel *name;
 @property (nonatomic, strong) UITextField *nameTF;
 @property (nonatomic, strong) UILabel *phone;
@@ -57,7 +58,6 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
             make.size.mas_equalTo(CGSizeMake(60, 60));
         }];
     }
-    
     if (!_name) {
         _name = [UILabel new];
         [self.contentView addSubview:_name];
@@ -84,6 +84,17 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
             make.right.mas_equalTo(-80);
             make.height.mas_equalTo(40);
             make.centerY.mas_equalTo(_name.mas_centerY);
+        }];
+    }
+    if (!_contactBtn) {
+        _contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.contentView addSubview:_contactBtn];
+        _contactBtn.backgroundColor = [UIColor redColor];
+        [_contactBtn addTarget:self action:@selector(contactSelected:) forControlEvents:UIControlEventTouchUpInside];
+        [_contactBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.mas_equalTo(_nameTF.mas_centerY);
+            make.size.mas_equalTo(CGSizeMake(30, 30));
+            make.left.mas_equalTo(_nameTF.mas_right).offset(5);
         }];
     }
     
@@ -186,16 +197,25 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 }
 
 - (void)setModel:(KK_InvestmenModel *)model {
+    if (![model isKindOfClass:[KK_InvestmenModel class]]) {
+        return;
+    }
     _model = model;
     self.tempModel = [model copy];
     _nameTF.text = model.id_info.id_name;
     _phoneTF.text = model.phone;
     _addressTF.text = model.id_info.id_address;
-    if (model.date_info.startDataStr.length) {
-        [_startData setTitle:model.date_info.startDataStr forState:UIControlStateNormal];
+    if (model.date_info.startDateStr.length) {
+        [_startData setTitle:model.date_info.startDateStr forState:UIControlStateNormal];
     }
-    if (model.date_info.endDataStr.length) {
-        [_endData setTitle:model.date_info.endDataStr forState:UIControlStateNormal];
+    if (model.date_info.endDateStr.length) {
+        [_endData setTitle:model.date_info.endDateStr forState:UIControlStateNormal];
+    }
+}
+
+- (void)contactSelected:(id)sender {
+    if (self.actionClick) {
+        self.actionClick(-1);
     }
 }
 

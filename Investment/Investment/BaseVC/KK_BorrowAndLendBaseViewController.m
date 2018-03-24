@@ -13,8 +13,8 @@
 #import "KK_PersonInformationViewController.h"
 #import "KK_PersonDetailViewController.h"
 
-@interface KK_BorrowAndLendBaseViewController ()
-
+@interface KK_BorrowAndLendBaseViewController ()<UIAlertViewDelegate>
+@property (nonatomic, strong) KK_InvestmenModel *tempModel;
 @end
 
 @implementation KK_BorrowAndLendBaseViewController
@@ -104,12 +104,14 @@
     KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
     vc.editState = ediState;
     NSDateFormatter *formater = [NSDateFormatter new];
-    formater.dateFormat = @"yyyy-MM-dd- HH:mm";
+    formater.dateFormat = @"yyyy-MM-dd";
     if (!model) {
         model = [KK_InvestmenModel new];
         model.investment_state = @(InvestmentStateNormal);
         model.ID = [formater stringFromDate:[NSDate date]];
         model.borrow_money_info = (RLMArray<KK_MoneyInfo> *)[[RLMArray alloc] initWithObjectClassName:NSStringFromClass([KK_MoneyInfo class])];
+        model.date_info.startDate = [NSDate date];
+        model.date_info.startDateStr = [formater stringFromDate:[NSDate date]];
         if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
             KK_MoneyInfo *borrow = [KK_MoneyInfo new];
             borrow.number = @"0";
@@ -150,16 +152,27 @@
     if (!model.bank_card_info) {
         model.bank_card_info = [KK_BankCardInfo new];
     }
+    self.tempModel = model;
     
     vc.model = model;
     vc.actionPassPersonInfo = ^(KK_InvestmenModel *model, BOOL isStore) {
         if (isStore) {
-            [__KKInvestmentManager updateInvestmentModel:model toState:InvestmentStateNormal];
-            [weakSelf.tableView reloadData];
+            if ([__KKInvestmentManager isModelExist:model]) {
+                NSString *str = [NSString stringWithFormat:@"phone = %@", model.phone];
+                RLMResults *results = [KK_InvestmenModel objectsWhere:str];
+                KK_InvestmenModel *temp = results[0];
+                NSString *message = [NSString stringWithFormat:@"手机号：%@已存在\n用户：%@", temp.phone, temp.id_info.id_name];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"信息已存在" message:message delegate:weakSelf cancelButtonTitle:@"取消" otherButtonTitles:@"更新", nil];
+                [alert show];
+            }else {
+                [__KKInvestmentManager updateInvestmentModel:model toState:InvestmentStateNormal];
+                [weakSelf.tableView reloadData];
+            }
         }
     };
     [self presentViewController:vc animated:YES completion:nil];
 }
+
 
 - (void)telPhone:(NSString *)phone {
     
@@ -176,6 +189,32 @@
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [[UIApplication sharedApplication] openURL:url];
     });
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        NSString *str = [NSString stringWithFormat:@"phone = %@", self.tempModel.phone];
+        RLMResults *results = [KK_InvestmenModel objectsWhere:str];
+        KK_InvestmenModel *model = results[0];
+        
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm transactionWithBlock:^{
+            model.id_info.id_name = self.tempModel.id_info.id_name;
+            model.phone = self.tempModel.phone;
+            if (self.tempModel.id_info.id_name) {
+                model.id_info = [self.tempModel.id_info copy];
+            }
+            if (self.tempModel.bank_card_info.card_number) {
+                model.bank_card_info = [self.tempModel copy];
+            }
+            if ([self.tempModel.borrow_money_info[0] money].length) {
+                [model.borrow_money_info insertObject:self.tempModel.borrow_money_info[0] atIndex:0];
+            }
+            [realm addOrUpdateObject:model];
+        }];
+        
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - setting & getting

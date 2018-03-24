@@ -11,10 +11,10 @@
 @implementation KK_DateInfo
 - (id)copyWithZone:(NSZone *)zone {
     KK_DateInfo *info = [[[self class] allocWithZone:zone] init];
-    info.startData = self.startData;
-    info.startDataStr = self.startDataStr;
-    info.endData = self.endData;
-    info.endDataStr = self.endDataStr;
+    info.startDate = self.startDate;
+    info.startDateStr = self.startDateStr;
+    info.endDate = self.endDate;
+    info.endDateStr = self.endDateStr;
     return info;
 }
 @end

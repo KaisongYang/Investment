@@ -90,6 +90,9 @@ static NSString *identifier = @"KK_CardInfoCell";
 }
 
 - (void)setModel:(KK_InvestmenModel *)model {
+    if (![model isKindOfClass:[KK_InvestmenModel class]]) {
+        return;
+    }
     _model = model;
     self.tempModel = [model copy];
     self.cardIDTF.text = model.bank_card_info.card_number ?:@"";

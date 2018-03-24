@@ -120,8 +120,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="l73-Hs-qTE" kind="relationship" relationship="viewControllers" id="2gi-iZ-4ex"/>
-                        <segue destination="2R6-Zx-9pN" kind="relationship" relationship="viewControllers" id="W2T-7A-atJ"/>
-                        <segue destination="pp6-6m-A9B" kind="relationship" relationship="viewControllers" id="Y43-Bx-ztg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lTO-B5-5oG" userLabel="First Responder" sceneMemberID="firstResponder"/>

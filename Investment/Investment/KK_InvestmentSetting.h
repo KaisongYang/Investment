@@ -13,7 +13,7 @@
 typedef NS_ENUM(NSUInteger, InvestmentType) {
     InvestmentTypeBorrow = 0,        // 借入
     InvestmentTypeLend,              // 借出
-    InvestmentTypeHistory,           // 历史
+    InvestmentTypeHistory,           // 历史（废弃）
 };
 
 typedef NS_ENUM(NSUInteger, InvestmentState) {
@@ -39,7 +39,7 @@ typedef void(^ActionPassPersonInfo)(KK_InvestmenModel *model, BOOL isStore);
 - (NSString *)cachePath;
 - (NSString *)pathOfDocument:(NSString *)filePath;
 - (NSString *)directoryOfDocument:(NSString *)filePath;
-
+- (NSInteger)dateTimeDifferenceWithStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;
 @end
 
 #define __KK_InvestmentSetting   [KK_InvestmentSetting shareInstance]
@@ -47,3 +47,23 @@ typedef void(^ActionPassPersonInfo)(KK_InvestmenModel *model, BOOL isStore);
 #define kScreenWidth    [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight   [UIScreen mainScreen].bounds.size.height
 
+
+
+#define _COLOR_RGB(rgbValue) [UIColor colorWith\
+Red     :(rgbValue & 0xFF0000)     / (float)0xFF0000 \
+green   :(rgbValue & 0xFF00)       / (float)0xFF00 \
+blue    :(rgbValue & 0xFF)         / (float)0xFF \
+alpha   :1.0]
+
+#define _COLOR_RGBA(rgbaValue) [UIColor colorWith\
+Red     :(rgbaValue & 0xFF000000)  / (float)0xFF000000 \
+green   :(rgbaValue & 0xFF0000)    / (float)0xFF0000 \
+blue    :(rgbaValue & 0xFF00)      / (float)0xFF00 \
+alpha   :(rgbaValue & 0xFF)        / (float)0xFF]
+
+// 判断是否主线程
+#define __is_main_thread                [NSThread isMainThread]
+// 使block在主线程中运行
+#define _main_thread_run(block)    if (__is_main_thread) {(block);} else {dispatch_async(dispatch_get_main_queue(), ^{(block);});}
+// 安全运行block
+#define _call_block(block, ...)     if (block) {block(__VA_ARGS__);}

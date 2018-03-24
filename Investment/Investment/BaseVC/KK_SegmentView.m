@@ -53,7 +53,7 @@
         }];
         if (i != count - 1) {
             UIView *line = [UIView new];
-            line.backgroundColor = [UIColor lightGrayColor];
+            line.backgroundColor = _COLOR_RGB(0xf1f1f1);
             [self addSubview:line];
             [line mas_remakeConstraints:^(MASConstraintMaker *make) {
                 make.right.mas_equalTo(btn.mas_right);

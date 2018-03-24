@@ -91,6 +91,9 @@ static NSString *identifier = @"KK_IDInfoCell";
 }
 
 - (void)setModel:(KK_InvestmenModel *)model {
+    if (![model isKindOfClass:[KK_InvestmenModel class]]) {
+        return;
+    }
     _model = model;
     self.tempModel = [model copy];
     self.idTF.text = model.id_info.id_number ?:@"";

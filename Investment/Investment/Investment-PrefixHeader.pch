@@ -20,7 +20,6 @@
 #import <OpenUDID.h>
 #import <IQKeyboardManager.h>
 #import <Masonry.h>
-#import <ZBarSDK.h>
 
 #import "NSDate+Extension.h"
 #import "UIView+Extension.h"
