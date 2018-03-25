@@ -19,6 +19,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [IQKeyboardManager sharedManager].enable = YES;
+    //    if ([__KK_InvestmentSetting useTouchID]) {
+    [KK_TouchID touchID];
+    //    }
     return YES;
 }
 

@@ -298,7 +298,7 @@ static NSString *identifier = @"KK_PersonDetailTableViewCell";
 }
 
 + (CGFloat)cellHeight; {
-    return 320.f;
+    return 350.f;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

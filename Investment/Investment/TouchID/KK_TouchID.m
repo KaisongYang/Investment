@@ -33,9 +33,8 @@
 }
 
 - (void)show {
-    if (![[UIApplication sharedApplication].keyWindow.subviews containsObject:self.view]) {
-        [[UIApplication sharedApplication].keyWindow addSubview:self.view];
-    }
+
+    _main_thread_run([self addSelf]);
     [self checkTouchID];
 }
 
@@ -66,9 +65,10 @@
         NSLog(@"--- 支持设备指纹");
         [context evaluatePolicy:LAPolicyDeviceOwnerAuthenticationWithBiometrics localizedReason:@"指纹解锁" reply:^(BOOL success, NSError * _Nullable error) {
             if (success) {
-                [weakSelf.view removeFromSuperview];
+                _main_thread_run([weakSelf.view removeFromSuperview]);
                 NSLog(@"--- 解锁成功");
             }else {
+                _main_thread_run([weakSelf addSelf]);
                 NSLog(@"-- 解锁失败：%@", error.localizedDescription);
                 switch (error.code) {
                     case LAErrorSystemCancel:
@@ -119,6 +119,11 @@
     }
 }
 
+- (void)addSelf {
+    if (![[UIApplication sharedApplication].keyWindow.subviews containsObject:self.view]) {
+        [[UIApplication sharedApplication].keyWindow addSubview:self.view];
+    }
+}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
