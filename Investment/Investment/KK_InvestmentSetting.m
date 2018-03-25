@@ -27,6 +27,7 @@ NSString *gs_pathOfDocument = nil;
 
 - (void)setUp {
     self.useTouchID = NO;
+    self.investment_index = 0;
 }
 
 - (NSString *)pathOfDocument:(NSString *)filePath {
@@ -71,19 +72,19 @@ NSString *gs_pathOfDocument = nil;
  * 开始到结束的时间差
  
  */
-- (NSInteger)dateTimeDifferenceWithStartTime:(NSDate *)startTime endTime:(NSDate *)endTime{
+- (NSInteger)dateTimeDifferenceWithStartTime:(NSString *)startTime endTime:(NSString *)endTime{
     
-    //    NSDateFormatter *date = [[NSDateFormatter alloc]init];
-    //
-    //    [date setDateFormat:@"yyyy-MM-dd"];
-    //
-    //    NSDate *startD =[date dateFromString:startTime];
-    //
-    //    NSDate *endD = [date dateFromString:endTime];
+    NSDateFormatter *date = [[NSDateFormatter alloc]init];
+
+    [date setDateFormat:@"yyyy-MM-dd"];
+
+    NSDate *startD =[date dateFromString:startTime];
+
+    NSDate *endD = [date dateFromString:endTime];
     
-    NSTimeInterval start = [startTime timeIntervalSince1970]*1;
+    NSTimeInterval start = [startD timeIntervalSince1970]*1;
     
-    NSTimeInterval end = [endTime timeIntervalSince1970]*1;
+    NSTimeInterval end = [endD timeIntervalSince1970]*1;
     
     NSTimeInterval value = end - start;
     

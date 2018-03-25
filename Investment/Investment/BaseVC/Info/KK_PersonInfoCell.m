@@ -48,28 +48,19 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 - (void)setUI {
     
     if (!_icon) {
-        _icon = [UIImageView new];
-        _icon.backgroundColor = KKRandomColor;
+        _icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon"]];
         [self.contentView addSubview:_icon];
         _icon.layer.cornerRadius = 30.f;
         _icon.clipsToBounds = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconClicked)];
+        _icon.userInteractionEnabled = YES;
+        [_icon addGestureRecognizer:tap];
         [_icon mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.mas_equalTo(15);
+            make.top.mas_equalTo(20);
+            make.centerX.mas_equalTo(_icon.superview.mas_centerX);
             make.size.mas_equalTo(CGSizeMake(60, 60));
         }];
     }
-    if (!_name) {
-        _name = [UILabel new];
-        [self.contentView addSubview:_name];
-        _name.text = @"姓名：";
-        _name.font = [UIFont systemFontOfSize:14];
-        _name.textColor = [UIColor blackColor];
-        [_name mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_icon.mas_left);
-            make.top.mas_equalTo(_icon.mas_bottom).offset(30);
-        }];
-    }
-    
     if (!_nameTF) {
         _nameTF = [UITextField new];
         [self.contentView addSubview:_nameTF];
@@ -83,30 +74,30 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
             make.left.mas_equalTo(100);
             make.right.mas_equalTo(-80);
             make.height.mas_equalTo(40);
-            make.centerY.mas_equalTo(_name.mas_centerY);
+            make.top.mas_equalTo(_icon.mas_bottom).offset(15);
         }];
     }
+    if (!_name) {
+        _name = [UILabel new];
+        [self.contentView addSubview:_name];
+        _name.text = @"姓名：";
+        _name.font = [UIFont systemFontOfSize:14];
+        _name.textColor = [UIColor blackColor];
+        [_name mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(15);
+            make.centerY.mas_equalTo(_nameTF.mas_centerY);
+        }];
+    }
+    
     if (!_contactBtn) {
         _contactBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.contentView addSubview:_contactBtn];
-        _contactBtn.backgroundColor = [UIColor redColor];
+        [_contactBtn setImage:[UIImage imageNamed:@"small_add"] forState:UIControlStateNormal];
         [_contactBtn addTarget:self action:@selector(contactSelected:) forControlEvents:UIControlEventTouchUpInside];
         [_contactBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(_nameTF.mas_centerY);
             make.size.mas_equalTo(CGSizeMake(30, 30));
             make.left.mas_equalTo(_nameTF.mas_right).offset(5);
-        }];
-    }
-    
-    if (!_phone) {
-        _phone = [UILabel new];
-        [self.contentView addSubview:_phone];
-        _phone.text = @"手机号：";
-        _phone.font = [UIFont systemFontOfSize:14];
-        _phone.textColor = [UIColor blackColor];
-        [_phone mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_name.mas_left);
-            make.top.mas_equalTo(_nameTF.mas_bottom).offset(25);
         }];
     }
     
@@ -121,24 +112,22 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         _phoneTF.tag = kBaseTag + 4;
         _phoneTF.delegate = self;
         [_phoneTF mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_nameTF.mas_left);
-            make.centerY.mas_equalTo(_phone.mas_centerY);
-            make.right.mas_equalTo(_nameTF.mas_right);
-            make.height.mas_equalTo(_nameTF.mas_height);
+            make.left.right.height.mas_equalTo(_nameTF);
+            make.top.mas_equalTo(_nameTF.mas_bottom).offset(10);
+        }];
+    }
+    if (!_phone) {
+        _phone = [UILabel new];
+        [self.contentView addSubview:_phone];
+        _phone.text = @"手机号：";
+        _phone.font = [UIFont systemFontOfSize:14];
+        _phone.textColor = [UIColor blackColor];
+        [_phone mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_name.mas_left);
+            make.centerY.mas_equalTo(_phoneTF.mas_centerY);
         }];
     }
     
-    if (!_address) {
-        _address = [UILabel new];
-        [self.contentView addSubview:_address];
-        _address.font = [UIFont systemFontOfSize:14];
-        _address.textColor = [UIColor blackColor];
-        _address.text = @"联系地址：";
-        [_address mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_icon.mas_left);
-            make.top.mas_equalTo(_phoneTF.mas_bottom).offset(25);
-        }];
-    }
     if (!_addressTF) {
         _addressTF = [UITextField new];
         [self.contentView addSubview:_addressTF];
@@ -149,10 +138,19 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         _addressTF.tag = kBaseTag + 5;
         _addressTF.delegate = self;
         [_addressTF mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(_nameTF.mas_left);
-            make.centerY.mas_equalTo(_address.mas_centerY);
-            make.right.mas_equalTo(_nameTF.mas_right);
-            make.height.mas_equalTo(_nameTF.mas_height);
+            make.left.right.height.mas_equalTo(_phoneTF);
+            make.top.mas_equalTo(_phoneTF.mas_bottom).offset(10);
+        }];
+    }
+    if (!_address) {
+        _address = [UILabel new];
+        [self.contentView addSubview:_address];
+        _address.font = [UIFont systemFontOfSize:14];
+        _address.textColor = [UIColor blackColor];
+        _address.text = @"联系地址：";
+        [_address mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_phone.mas_left);
+            make.centerY.mas_equalTo(_addressTF.mas_centerY);
         }];
     }
 }
@@ -181,9 +179,9 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         case kBaseTag + 6:
         {
             if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
-                [self.model.borrow_money_info[0] setRate:text ?:@""];
+                [self.model.borrow_money_info[__KK_InvestmentSetting.investment_index] setRate:text ?:@""];
             }else {
-                [self.model.lend_money_info[0] setRate:text ?:@""];
+                [self.model.lend_money_info[__KK_InvestmentSetting.investment_index] setRate:text ?:@""];
             }
         }
             break;
@@ -202,6 +200,13 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
     }
     _model = model;
     self.tempModel = [model copy];
+    
+    if (model.id_info.id_icon_data.length) {
+        self.icon.image = [UIImage imageWithData:model.id_info.id_icon_data];
+    }else {
+        self.icon.image = [UIImage imageNamed:@"icon"];
+    }
+    
     _nameTF.text = model.id_info.id_name;
     _phoneTF.text = model.phone;
     _addressTF.text = model.id_info.id_address;
@@ -216,6 +221,11 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 - (void)contactSelected:(id)sender {
     if (self.actionClick) {
         self.actionClick(-1);
+    }
+}
+- (void)iconClicked {
+    if (self.actionClick) {
+        self.actionClick(1);
     }
 }
 

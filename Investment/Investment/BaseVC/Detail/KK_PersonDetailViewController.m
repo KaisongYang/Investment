@@ -12,6 +12,7 @@
 #import "KK_PersonInformationViewController.h"
 @interface KK_PersonDetailViewController ()
 @property (nonatomic, strong) KK_SegmentView *segmentView;
+@property (nonatomic, strong) NSString *settleStr;
 @end
 
 @implementation KK_PersonDetailViewController
@@ -60,14 +61,15 @@
         KK_PersonDetailTableViewCell *cell = [KK_PersonDetailTableViewCell cellWithTableView:tableView];
         cell.model = self.model;
         return cell;
-    }
-    KK_PersonDetailBorrowAndLendCell *cell = [KK_PersonDetailBorrowAndLendCell cellWithTableView:tableView];
-    if (indexPath.section == 1) {
-        cell.model = self.model.borrow_money_info[indexPath.row];
     }else {
-        cell.model = self.model.lend_money_info[indexPath.row];
+        KK_PersonDetailBorrowAndLendCell *cell = [KK_PersonDetailBorrowAndLendCell cellWithTableView:tableView];
+        if (indexPath.section == 1) {
+            cell.model = self.model.borrow_money_info[indexPath.row];
+        }else {
+            cell.model = self.model.lend_money_info[indexPath.row];
+        }
+        return cell;
     }
-    return cell;
 }
 
 #define kSectionHeaderHeight    50.f
@@ -161,21 +163,75 @@
     if ([model.investment_state intValue] != 0) {
         return nil;
     }
-    UITableViewRowAction *action = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"结束" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
-        RLMRealm *realm = [RLMRealm defaultRealm];
-        [realm transactionWithBlock:^{
-            if ([model.investment_state intValue] == 0) {
-                model.investment_state = @(2);
-                model.date_info.endDate = [NSDate date];
-                NSDateFormatter *formater = [NSDateFormatter new];
-                formater.dateFormat = @"yyyy-MM-dd";
-                model.date_info.endDateStr = [formater stringFromDate:model.date_info.endDate];
-            }
-            [realm addOrUpdateObject:model];
+    self.settleStr = nil;
+    UITableViewRowAction *action1 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"结束" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"是否确定结束？" message:@"请输入结束需要支付的利息，否则会使用默认计算" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *a1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         }];
-        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+        [alert addAction:a1];
+        UIAlertAction *a2 = [UIAlertAction actionWithTitle:@"结束" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            CGFloat settle = [weakSelf getSettleMoney:model];
+            if (self.settleStr.length) {
+                settle = [self.settleStr floatValue];
+            }
+            RLMRealm *realm = [RLMRealm defaultRealm];
+            [realm transactionWithBlock:^{
+                if ([model.investment_state intValue] == 0) {
+                    model.investment_state = @(2);
+                    model.settleMoney = [NSString stringWithFormat:@"%.2f", settle];
+                    model.date_info.endDate = [NSDate date];
+                    NSDateFormatter *formater = [NSDateFormatter new];
+                    formater.dateFormat = @"yyyy-MM-dd";
+                    model.date_info.endDateStr = [formater stringFromDate:model.date_info.endDate];
+                }
+                [realm addOrUpdateObject:weakSelf.model];
+            }];
+            [weakSelf.tableView reloadData];
+        }];
+        [alert addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = [NSString stringWithFormat:@"结算利息：%.2f", [weakSelf getSettleMoney:model]];
+            textField.returnKeyType = UIReturnKeyDone;
+            textField.keyboardType = UIKeyboardTypeDecimalPad;
+            [[NSNotificationCenter defaultCenter] addObserver:weakSelf selector:@selector(alertTextFieldDidChange:) name:UITextFieldTextDidChangeNotification object:textField];
+        }];
+        [alert addAction:a2];
+        
+        [weakSelf presentViewController:alert animated:YES completion:nil];
     }];
-    return @[action];
+    UITableViewRowAction *action2 = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleNormal title:@"修改" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        __KK_InvestmentSetting.investment_index = indexPath.row;
+        [weakSelf editInvestMoneyInfo:weakSelf.model indexPath:indexPath];
+    }];
+    return @[action2, action1];
+}
+
+- (void)alertTextFieldDidChange:(NSNotification *)note {
+    UITextField *textField = note.object;
+    if ([textField isKindOfClass:[UITextField class]]) {
+        self.settleStr = textField.text;
+    }
+}
+
+- (CGFloat)getSettleMoney:(KK_MoneyInfo *)model {
+    
+    CGFloat settle = 0.f;
+    NSDateFormatter *format = [[NSDateFormatter alloc]init];
+    [format setDateFormat:@"yyyy-MM-dd"];
+    if ([model.money floatValue] < 0.1) {
+        settle = 0.f;
+    }
+    if (!model.date_info.startDate) {
+        settle = 0.f;
+    }
+    
+    NSString *dateStr = [format stringFromDate:[NSDate date]];
+    settle = [model.money floatValue] * [model.rate floatValue] * [__KK_InvestmentSetting dateTimeDifferenceWithStartTime:model.date_info.startDateStr endTime:dateStr] * 0.01 / 365;
+    if (settle < 0) {
+        settle = 0.f;
+    }
+    return settle;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -183,12 +239,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    switch (indexPath.section) {
-        case 0:
-            return [KK_PersonDetailTableViewCell cellHeight];
-            break;
-        default:
-            break;
+    if (indexPath.section == 0) {
+        return [KK_PersonDetailTableViewCell cellHeight];
     }
     return [KK_PersonDetailBorrowAndLendCell cellHeight];
 }
@@ -262,6 +314,29 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)editInvestMoneyInfo:(KK_InvestmenModel *)model indexPath:(NSIndexPath *)indexPath  {
+    
+    __weak typeof(self) weakSelf = self;
+    KK_PersonInformationViewController *vc = [KK_PersonInformationViewController new];
+    vc.editState = EditStatePersonBorrowOrLendMoney;
+    model = [model copy];
+    if (!model.id_info) {
+        model.id_info = [KK_IDInfo new];
+    }
+    if (!model.bank_card_info) {
+        model.bank_card_info = [KK_BankCardInfo new];
+    }
+    vc.model = model;
+    vc.actionPassPersonInfo = ^(KK_InvestmenModel *model, BOOL isStore) {
+        __KK_InvestmentSetting.investment_index = 0;
+        if (isStore) {
+            [__KKInvestmentManager updateInvestmentModel:model toState:InvestmentStateNormal];
+            [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+    };
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)toPersonInfoWithModel:(KK_InvestmenModel *)model editState:(EditState)ediState{
     
     __weak typeof(self) weakSelf = self;
@@ -270,6 +345,7 @@
     NSDateFormatter *formater = [NSDateFormatter new];
     formater.dateFormat = @"yyyy-MM-dd";
     if (!model) {
+        __KK_InvestmentSetting.investment_index = 0;
         model = [KK_InvestmenModel new];
         model.investment_state = @(InvestmentStateNormal);
         model.ID = [formater stringFromDate:[NSDate date]];
@@ -317,8 +393,19 @@
     
     vc.model = model;
     vc.actionPassPersonInfo = ^(KK_InvestmenModel *model, BOOL isStore) {
+        __KK_InvestmentSetting.investment_index = 0;
         if (isStore) {
             [__KKInvestmentManager updateInvestmentModel:model toState:InvestmentStateNormal];
+            NSInteger section = 0;
+            switch (ediState) {
+                case EditStatePersonNormalInfo:
+                    break;
+                case EditStatePersonBorrowOrLendMoney:
+                    section = 1;
+                    break;
+                default:
+                    break;
+            }
             [weakSelf.tableView reloadData];
         }
     };
@@ -341,6 +428,7 @@
         [[UIApplication sharedApplication] openURL:url];
     });
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

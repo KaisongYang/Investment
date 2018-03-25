@@ -35,13 +35,13 @@ typedef void(^ActionPassPersonInfo)(KK_InvestmenModel *model, BOOL isStore);
 + (instancetype)shareInstance;
 
 @property (nonatomic, assign) BOOL useTouchID;
-
+@property (nonatomic, assign) NSInteger investment_index;
 - (NSString *)openUDID;
 - (NSString *)accountPath;
 - (NSString *)cachePath;
 - (NSString *)pathOfDocument:(NSString *)filePath;
 - (NSString *)directoryOfDocument:(NSString *)filePath;
-- (NSInteger)dateTimeDifferenceWithStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;
+- (NSInteger)dateTimeDifferenceWithStartTime:(NSString *)startTime endTime:(NSString *)endTime;
 @end
 
 #define __KK_InvestmentSetting   [KK_InvestmentSetting shareInstance]

@@ -12,7 +12,7 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     KK_IDInfo *info = [[[self class] allocWithZone:zone] init];
-    info.id_icon = self.id_icon;
+    info.id_icon_data = self.id_icon_data;
     info.id_sex = self.id_sex;
     info.id_name = self.id_name;
     info.id_nation = self.id_nation;
@@ -25,5 +25,4 @@
     info.id_issue_government = self.id_issue_government;
     return info;
 }
-
 @end

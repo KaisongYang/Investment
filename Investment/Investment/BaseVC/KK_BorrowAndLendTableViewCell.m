@@ -42,8 +42,7 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 - (void)setUI {
     
     if (!_icon) {
-        _icon = [UIImageView new];
-        _icon.backgroundColor = KKRandomColor;
+        _icon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon"]];
         [self.contentView addSubview:_icon];
         _icon.layer.cornerRadius = 30.f;
         _icon.clipsToBounds = YES;
@@ -86,7 +85,7 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
         _address.numberOfLines = 3;
         [_address mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(_icon.mas_left);
-            make.top.mas_equalTo(_icon.mas_bottom).offset(5);
+            make.top.mas_equalTo(_icon.mas_bottom).offset(10);
             make.right.mas_equalTo(-15);
         }];
     }
@@ -121,13 +120,26 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 
 - (void)updateInfo:(KK_InvestmenModel *)model {
  
+    if (![model isKindOfClass:[KK_InvestmenModel class]]) {
+        return;
+    }
+    if (model.id_info.id_icon_data.length) {
+        self.icon.image = [UIImage imageWithData:model.id_info.id_icon_data];
+    }else {
+        self.icon.image = [UIImage imageNamed:@"icon"];
+    }
     self.name.text = model.id_info.id_name ?:@"";
     NSString *phoneStr = model.phone ?:@"";
     if (phoneStr.length == 11) {
         phoneStr = [phoneStr stringByReplacingCharactersInRange:NSMakeRange(3, 4) withString:@"****"];
     }
     self.phone.text = phoneStr ?: @"";
-    self.address.text = model.id_info.id_address ?:@"";
+    
+    if (model.id_info.id_address.length) {
+        self.address.text = [NSString stringWithFormat:@"地址：%@", model.id_info.id_address];
+    }else {
+        self.address.text = @"";
+    }
     __weak typeof(self) weakSelf = self;
     self.segmentView.actionClick = ^(NSInteger index) {
         weakSelf.actionClick(index);
@@ -135,7 +147,7 @@ static NSString *identifier = @"KK_BorrowAndLendTableViewCell";
 }
 
 + (CGFloat)cellHeight; {
-    return 200.f;
+    return 180.f;
 }
 
 @end

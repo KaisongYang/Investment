@@ -13,6 +13,8 @@
 #import "KK_CardInfoCell.h"
 #import "KK_SelectedDataCell.h"
 #import <LJContactManager.h>
+#import <TZImagePickerController.h>
+#import <TZImageManager.h>
 
 @interface KK_PersonInformationViewController ()
 
@@ -47,7 +49,7 @@
     
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.view addSubview:btn];
-    [btn setImage:[UIImage imageNamed:@"close-16"] forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"icClose"] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(close:) forControlEvents:UIControlEventTouchUpInside];
     [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.top.mas_equalTo(20);
@@ -128,7 +130,11 @@
             if (self.editState == EditStatePersonNormalInfo) {
                 KK_PersonInfoCell *cell = [KK_PersonInfoCell cellWithTableView:tableView];
                 cell.actionClick = ^(NSInteger index) {
-                  [weakSelf openContactVC];
+                    if (index == 1) { // 图片
+                        [weakSelf opnePhotoVC];
+                    }else { // 联系人
+                        [weakSelf openContactVC];
+                    }
                 };
                 cell.model = self.model;
                 return cell;
@@ -146,7 +152,11 @@
                 {
                     KK_PersonInfoCell *cell = [KK_PersonInfoCell cellWithTableView:tableView];
                     cell.actionClick = ^(NSInteger index) {
-                        [weakSelf openContactVC];
+                        if (index == 1) { // 图片
+                            [weakSelf opnePhotoVC];
+                        }else { // 联系人
+                            [weakSelf openContactVC];
+                        }
                     };
                     cell.model = self.model;
                     return cell;
@@ -286,6 +296,29 @@
             break;
     }
     return 0.01;
+}
+
+
+- (void)opnePhotoVC {
+    
+    __weak typeof(self) weakSelf = self;
+    if (![[TZImageManager manager] authorizationStatusAuthorized]) {
+        [[TZImageManager manager] requestAuthorizationWithCompletion:^{
+            [weakSelf photoVC];
+        }];
+    }else {
+        [self photoVC];
+    }
+}
+- (void)photoVC {
+    __weak typeof(self) weakSelf = self;
+    TZImagePickerController *imagePicker = [[TZImagePickerController alloc] initWithMaxImagesCount:1 delegate:nil];
+    [imagePicker setDidFinishPickingPhotosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        UIImage *image = photos[0];
+        weakSelf.model.id_info.id_icon_data = UIImageJPEGRepresentation(image, 0.8);
+        [weakSelf.tableView reloadData];
+    }];
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 - (void)openContactVC {

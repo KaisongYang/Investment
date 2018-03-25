@@ -43,6 +43,11 @@
 @property NSString *rate;
 
 /**
+ 结算
+ */
+@property NSString *settleMoney;
+
+/**
  此笔业务时间线
  */
 @property KK_DateInfo *date_info;

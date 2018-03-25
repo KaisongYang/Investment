@@ -15,7 +15,7 @@
 /**
  头像
  */
-@property NSString *id_icon;
+@property NSData *id_icon_data;
 
 /**
  姓名

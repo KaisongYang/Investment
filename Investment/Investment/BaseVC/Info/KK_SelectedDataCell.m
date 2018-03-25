@@ -95,15 +95,15 @@ static NSString *identifier = @"KK_SelectedDataCell";
     NSString *endStr = @"";
     BOOL isBorrow = __KKInvestmentManager.current_investment_type == InvestmentTypeBorrow;
     if (isBorrow) {
-        startStr = [self.model.borrow_money_info[0] date_info].startDateStr;
-        endStr = [self.model.borrow_money_info[0] date_info].endDateStr;
+        startStr = [self.model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].startDateStr;
+        endStr = [self.model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].endDateStr;
     }else {
-        startStr = [self.model.lend_money_info[0] date_info].startDateStr;
-        endStr = [self.model.lend_money_info[0] date_info].endDateStr;
+        startStr = [self.model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].startDateStr;
+        endStr = [self.model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].endDateStr;
     }
     
-    NSDate *startDate;
-    NSDate *endDate;
+    NSDate *startDate = [NSDate date];
+    NSDate *endDate = [NSDate date];
     NSDateFormatter *formater = [NSDateFormatter new];
     formater.dateFormat = @"yyyy-MM-dd";
     if (startStr.length) {
@@ -121,21 +121,21 @@ static NSString *identifier = @"KK_SelectedDataCell";
         if (sender.tag == weakSelf.startData.tag) {
             [weakSelf.startData setTitle:str forState:UIControlStateNormal];
             if (isBorrow) {
-                [weakSelf.model.borrow_money_info[0] date_info].startDateStr = str;
-                [weakSelf.model.borrow_money_info[0] date_info].startDate = d;
+                [weakSelf.model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].startDateStr = str;
+                [weakSelf.model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].startDate = d;
             }else {
-                [weakSelf.model.lend_money_info[0] date_info].startDateStr = str;
-                [weakSelf.model.lend_money_info[0] date_info].startDate = d;
+                [weakSelf.model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].startDateStr = str;
+                [weakSelf.model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].startDate = d;
             }
         }else if (sender.tag == weakSelf.endData.tag) {
             [weakSelf.endData setTitle:str forState:UIControlStateNormal];
             
             if (isBorrow) {
-                [weakSelf.model.borrow_money_info[0] date_info].endDateStr = str;
-                [weakSelf.model.borrow_money_info[0] date_info].endDate = d;
+                [weakSelf.model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].endDateStr = str;
+                [weakSelf.model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].endDate = d;
             }else {
-                [weakSelf.model.lend_money_info[0] date_info].endDateStr = str;
-                [weakSelf.model.lend_money_info[0] date_info].endDate = d;
+                [weakSelf.model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].endDateStr = str;
+                [weakSelf.model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].endDate = d;
             }
         }
     }];
@@ -144,9 +144,11 @@ static NSString *identifier = @"KK_SelectedDataCell";
     if (sender.tag == self.startData.tag) {
         if (endStr.length) {
             picker.maxLimitDate = [formater dateFromString:endStr];
+        }else {
+            picker.maxLimitDate = [NSDate date];
         }
     }else {
-        if (self.model.date_info.startDateStr.length) {
+        if (startStr.length) {
             picker.minLimitDate = [formater dateFromString:startStr];
         }
     }
@@ -161,11 +163,11 @@ static NSString *identifier = @"KK_SelectedDataCell";
     NSString *startDataStr = @"";
     NSString *endDataStr = @"";
     if (__KKInvestmentManager.current_investment_type == InvestmentTypeBorrow) {
-        startDataStr = [model.borrow_money_info[0] date_info].startDateStr;
-        endDataStr = [model.borrow_money_info[0] date_info].endDateStr;
+        startDataStr = [model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].startDateStr;
+        endDataStr = [model.borrow_money_info[__KK_InvestmentSetting.investment_index] date_info].endDateStr;
     }else {
-        startDataStr = [model.lend_money_info[0] date_info].startDateStr;
-        endDataStr = [model.lend_money_info[0] date_info].endDateStr;
+        startDataStr = [model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].startDateStr;
+        endDataStr = [model.lend_money_info[__KK_InvestmentSetting.investment_index] date_info].endDateStr;
     }
     if (startDataStr.length) {
         [_startData setTitle:startDataStr forState:UIControlStateNormal];

@@ -51,7 +51,7 @@ static KK_InvestmentManager *mgr = nil;
 }
 
 - (BOOL)isModelExist:(KK_InvestmenModel *)model; {
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"phone", model.phone];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"phone == %@", model.phone];
     RLMResults *results = [KK_InvestmenModel objectsWithPredicate:pred];
     return results.count;
 }

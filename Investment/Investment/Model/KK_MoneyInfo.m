@@ -16,10 +16,11 @@
     info.investment_state = self.investment_state;
     info.money = self.money;
     info.rate = self.rate;
+    info.settleMoney = self.settleMoney;
     info.date_info = [self.date_info copy];
     return info;
 }
-+ (NSString *)primaryKey {
-    return @"number";
-}
+//+ (NSString *)primaryKey {
+//    return @"number";
+//}
 @end

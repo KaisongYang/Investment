@@ -126,7 +126,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    if ([textField.text isEqualToString:@"111111"]) {
+    if ([textField.text isEqualToString:@"102189"]) {
         if (self.view) {
             [self.view removeFromSuperview];
             self.view = nil;
